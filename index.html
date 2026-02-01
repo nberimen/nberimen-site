@@ -1,16 +1,162 @@
-<!doctype html>
-<html lang="tr">
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
 <head>
   <meta charset="utf-8" />
-  <title>Nberimen</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>nberimen Home Page</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#137fec",
+            "background-light": "#f6f7f8",
+            "background-dark": "#101922",
+          },
+          fontFamily: {
+            "display": ["Inter", "sans-serif"]
+          },
+          borderRadius: {
+            "DEFAULT": "0.5rem",
+            "lg": "1rem",
+            "xl": "1.5rem",
+            "full": "9999px"
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+  </style>
+  <style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
 </head>
-<body>
-  <h1>nberimen</h1>
-  <p>Dijital ürünler için sade ve güvenilir çözümler.</p>
-  <nav>
-    <a href="/privacy">Privacy Policy</a> |
-    <a href="/terms">Terms</a>
-  </nav>
+
+<body class="bg-background-light dark:bg-background-dark text-[#111418] dark:text-white transition-colors duration-200">
+  <!-- Container for max-width 980px as per description -->
+  <div class="mx-auto max-w-[980px] min-h-screen flex flex-col bg-white dark:bg-[#101922]">
+    <!-- TopAppBar -->
+    <header
+      class="flex items-center bg-white dark:bg-[#101922] p-6 justify-between sticky top-0 z-50 border-b border-gray-100 dark:border-gray-800">
+      <h2 class="text-[#111418] dark:text-white text-xl font-bold leading-tight tracking-[-0.015em] flex-1">nberimen
+      </h2>
+      <div class="flex items-center justify-end">
+        <span
+          class="text-primary bg-primary/10 px-3 py-1 rounded-full text-xs font-bold tracking-wide uppercase">Digital
+          products</span>
+      </div>
+    </header>
+    <main class="flex-grow">
+      <!-- HeroSection -->
+      <section class="p-4 @container">
+        <div class="@[480px]:p-2">
+          <div
+            class="flex min-h-[420px] flex-col gap-6 bg-cover bg-center bg-no-repeat rounded-xl items-center justify-center p-6 text-center"
+            data-alt="Modern abstract blue and white gradient background"
+            style="background-image: linear-gradient(rgba(19, 127, 236, 0.05) 0%, rgba(19, 127, 236, 0.15) 100%);">
+            <div class="flex flex-col gap-4 max-w-2xl">
+              <h1
+                class="text-[#111418] dark:text-white text-4xl font-black leading-tight tracking-[-0.033em] @[480px]:text-5xl">
+                We build simple, reliable digital products.
+              </h1>
+              <h2 class="text-[#617589] dark:text-gray-400 text-lg font-normal leading-relaxed">
+                AI-assisted wellness and productivity tools designed for the modern professional.
+              </h2>
+            </div>
+            <div class="mt-4">
+              <button
+                class="flex min-w-[160px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 px-6 bg-primary text-white text-base font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 transition-all shadow-lg shadow-primary/20">
+                <span class="truncate">Explore Products</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- SectionHeader -->
+      <section class="px-6 pt-12 pb-4">
+        <div class="flex items-center justify-between">
+          <h2 class="text-[#111418] dark:text-white text-2xl font-bold leading-tight tracking-[-0.015em]">Featured
+            Products</h2>
+          <span class="material-symbols-outlined text-gray-400">arrow_forward</span>
+        </div>
+      </section>
+      <!-- Card: FitMate AI -->
+      <section class="p-6 @container">
+        <div
+          class="flex flex-col items-stretch justify-start rounded-xl @xl:flex-row shadow-sm border border-gray-100 dark:border-gray-800 bg-white dark:bg-[#1a242f] overflow-hidden">
+          <div class="w-full @xl:w-1/2 bg-center bg-no-repeat aspect-video bg-cover"
+            data-alt="Smartphone showing a sleek fitness tracking application interface"
+            style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAUlQWbRV9MQu_cvMC1ltiHp59lNAxDYlEvma6rBOX26SY3XtQoDC9ZfHhCPOfKcR7kFN0kB1PDMuuQjeSkAV5tsZpiRRVtj-2h-TESd2Jw3nAyoVdTPIqoTMyW_TbtiaNyFgv0SHrNyMsVqyocgCXerw3BQb-gvLh6yW295ttn_aTotRqV-gSDxN-p6iwJ5DnD8KyKeH5JGEFqrb2KuXOcXQISsabBonvCi4I0dxw5VhgImejjjYSjFbbxsH86wYKJhw0WTZenkg");'>
+          </div>
+          <div class="flex w-full grow flex-col items-stretch justify-center gap-3 p-6 @xl:p-8">
+            <div>
+              <p class="text-primary text-xs font-bold uppercase tracking-widest mb-1">Wellness</p>
+              <p class="text-[#111418] dark:text-white text-2xl font-bold leading-tight tracking-[-0.015em]">FitMate AI
+              </p>
+            </div>
+            <p class="text-[#617589] dark:text-gray-400 text-base font-normal leading-relaxed">
+              Your personal fitness and nutrition assistant, powered by advanced machine learning to tailor every
+              workout to your goals.
+            </p>
+            <div class="pt-4">
+              <button
+                class="flex w-full @xl:w-auto min-w-[160px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 border-2 border-primary text-primary hover:bg-primary hover:text-white transition-all text-sm font-bold leading-normal">
+                <span class="truncate">Open product page</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Spacing to ensure generous whitespace -->
+      <div class="h-12"></div>
+    </main>
+    <!-- Footer -->
+    <footer class="flex flex-col gap-8 px-6 py-12 text-center border-t border-gray-100 dark:border-gray-800 @container">
+      <nav class="flex flex-wrap items-center justify-center gap-x-12 gap-y-4" aria-label="Footer navigation">
+        <a class="text-[#617589] dark:text-gray-400 text-sm font-medium hover:text-primary transition-colors"
+          href="/products/fitmateai/privacy">
+          Privacy Policy
+        </a>
+
+        <a class="text-[#617589] dark:text-gray-400 text-sm font-medium hover:text-primary transition-colors"
+          href="/products/fitmateai/terms">
+          Terms of Service
+        </a>
+
+        <a class="text-[#617589] dark:text-gray-400 text-sm font-medium hover:text-primary transition-colors"
+          href="/products/fitmateai/support">
+          Product Support
+        </a>
+      </nav>
+
+      <div class="flex flex-col gap-2">
+        <p class="text-[#617589] dark:text-gray-500 text-xs font-normal">
+          © 2026 nberimen Digital Products. All rights reserved.
+        </p>
+      </div>
+    </footer>
+    <!-- Safety space for mobile home indicators -->
+    <div class="h-8 bg-white dark:bg-[#101922]"></div>
+  </div>
 </body>
+
 </html>

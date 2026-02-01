@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>FitMate AI Support</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+    <style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark font-display text-[#111418] dark:text-white transition-colors duration-300">
+    <div
+        class="relative flex h-screen w-full flex-col max-w-[480px] mx-auto bg-white dark:bg-background-dark overflow-x-hidden border-x border-gray-100 dark:border-gray-800 shadow-sm">
+        <!-- TopAppBar -->
+        <div class="flex items-center bg-white dark:bg-background-dark p-4 pb-2 justify-between sticky top-0 z-10">
+            <h2
+                class="text-[#111418] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] absolute left-1/2 -translate-x-1/2">
+                Support</h2>
+        </div>
+        <div class="flex-1 overflow-y-auto">
+            <!-- HeadlineText -->
+            <div class="px-4 pb-3 pt-8">
+                <h1 class="text-[#111418] dark:text-white tracking-tight text-[32px] font-bold leading-tight">Contact
+                    Support</h1>
+            </div>
+            <!-- BodyText -->
+            <div class="px-4 pb-6 pt-1">
+                <p class="text-[#617589] dark:text-gray-400 text-base font-normal leading-relaxed">
+                    Need help with FitMate AI? Contact us and we’ll respond as soon as possible.
+                </p>
+            </div>
+            <!-- ListItem: Contact Line -->
+            <div
+                class="flex items-center gap-4 bg-white dark:bg-background-dark px-4 min-h-[72px] py-2 justify-between border-y border-gray-50 dark:border-gray-800">
+                <div class="flex items-center gap-4">
+                    <div
+                        class="text-primary flex items-center justify-center rounded-lg bg-primary/10 shrink-0 size-12">
+                        <span class="material-symbols-outlined">mail</span>
+                    </div>
+                    <div class="flex flex-col justify-center">
+                        <p class="text-[#111418] dark:text-white text-base font-medium leading-normal line-clamp-1">
+                            Email</p>
+
+                        <p class="text-primary text-sm font-normal leading-normal line-clamp-2"><a
+                                href="mailto:support@nberimen.com?subject=FitMate%20AI%20Support"
+                                class="text-primary hover:underline">support@nberimen.com</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer / Branding -->
+        <div class="p-6 text-center">
+            <p class="text-[#617589] dark:text-gray-500 text-xs font-medium tracking-widest uppercase">
+                A Product of nberimen
+            </p>
+        </div>
+        <!-- Bottom Safe Area Spacer -->
+        <div class="h-8 bg-white dark:bg-background-dark"></div>
+    </div>
+</body>
+
+</html>
