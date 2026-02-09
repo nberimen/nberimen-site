@@ -1,29 +1,28 @@
 <!DOCTYPE html>
-
 <html class="light" lang="en">
 
 <head>
   <meta charset="utf-8" />
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-  <title>nberimen Home Page</title>
+  <title>nberimen — Digital Products</title>
+  <meta name="description" content="We craft simple, reliable digital products. AI-powered tools for wellness and productivity.">
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap"
-    rel="stylesheet" />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-    rel="stylesheet" />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-    rel="stylesheet" />
-  <script id="tailwind-config">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+  <script>
     tailwind.config = {
       darkMode: "class",
       theme: {
         extend: {
           colors: {
             "primary": "#137fec",
-            "background-light": "#f6f7f8",
-            "background-dark": "#101922",
+            "primary-light": "#e8f2fd",
+            "background-light": "#f8f9fb",
+            "background-dark": "#0b1120",
+            "surface-light": "#ffffff",
+            "surface-dark": "#131c2e",
+            "border-light": "#e5e8ed",
+            "border-dark": "#1e2a3f",
           },
           fontFamily: {
             "display": ["Inter", "sans-serif"]
@@ -32,6 +31,7 @@
             "DEFAULT": "0.5rem",
             "lg": "1rem",
             "xl": "1.5rem",
+            "2xl": "2rem",
             "full": "9999px"
           },
         },
@@ -42,125 +42,178 @@
     body {
       font-family: 'Inter', sans-serif;
       -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
-  </style>
-  <style>
-    body {
-      min-height: max(884px, 100dvh);
+    .hero-gradient {
+      background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(19, 127, 236, 0.12) 0%, transparent 100%);
     }
+    .dark .hero-gradient {
+      background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(19, 127, 236, 0.15) 0%, transparent 100%);
+    }
+    .product-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .product-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.1);
+    }
+    .dark .product-card:hover {
+      box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.4);
+    }
+    /* Smooth scroll */
+    html { scroll-behavior: smooth; }
   </style>
 </head>
 
-<body class="bg-background-light dark:bg-background-dark text-[#111418] dark:text-white transition-colors duration-200">
-  <!-- Container for max-width 980px as per description -->
-  <div class="mx-auto max-w-[980px] min-h-screen flex flex-col bg-white dark:bg-[#101922]">
-    <!-- TopAppBar -->
-    <header
-      class="flex items-center bg-white dark:bg-[#101922] p-6 justify-between sticky top-0 z-50 border-b border-gray-100 dark:border-gray-800">
-      <h2 class="text-[#111418] dark:text-white text-xl font-bold leading-tight tracking-[-0.015em] flex-1">nberimen
-      </h2>
-      <div class="flex items-center justify-end">
-        <span
-          class="text-primary bg-primary/10 px-3 py-1 rounded-full text-xs font-bold tracking-wide uppercase">Digital
-          products</span>
+<body class="bg-background-light dark:bg-background-dark text-gray-900 dark:text-gray-100 transition-colors duration-300">
+  <div class="min-h-screen flex flex-col">
+    <!-- ===== HEADER ===== -->
+    <header class="sticky top-0 z-50 backdrop-blur-lg bg-white/80 dark:bg-background-dark/80 border-b border-border-light dark:border-border-dark">
+      <div class="mx-auto max-w-6xl px-6 h-16 flex items-center justify-between">
+        <!-- Logo -->
+        <a href="/" class="flex items-center gap-2 group">
+          <div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
+            <span class="text-white font-black text-sm">n</span>
+          </div>
+          <span class="text-lg font-bold tracking-tight group-hover:text-primary transition-colors">nberimen</span>
+        </a>
+        <!-- Nav -->
+        <nav class="flex items-center gap-6">
+          <a href="#products" class="text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors">Products</a>
+          <a href="#about" class="text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors">About</a>
+          <!-- Dark mode toggle -->
+          <button onclick="document.documentElement.classList.toggle('dark')" class="w-9 h-9 rounded-lg flex items-center justify-center hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" aria-label="Toggle dark mode">
+            <span class="material-symbols-outlined text-[20px] dark:hidden">dark_mode</span>
+            <span class="material-symbols-outlined text-[20px] hidden dark:inline">light_mode</span>
+          </button>
+        </nav>
       </div>
     </header>
+
     <main class="flex-grow">
-      <!-- HeroSection -->
-      <section class="p-4 @container">
-        <div class="@[480px]:p-2">
-          <div
-            class="flex min-h-[420px] flex-col gap-6 bg-cover bg-center bg-no-repeat rounded-xl items-center justify-center p-6 text-center"
-            data-alt="Modern abstract blue and white gradient background"
-            style="background-image: linear-gradient(rgba(19, 127, 236, 0.05) 0%, rgba(19, 127, 236, 0.15) 100%);">
-            <div class="flex flex-col gap-4 max-w-2xl">
-              <h1
-                class="text-[#111418] dark:text-white text-4xl font-black leading-tight tracking-[-0.033em] @[480px]:text-5xl">
-                We build simple, reliable digital products.
-              </h1>
-              <h2 class="text-[#617589] dark:text-gray-400 text-lg font-normal leading-relaxed">
-                AI-assisted wellness and productivity tools designed for the modern professional.
-              </h2>
+      <!-- ===== HERO SECTION ===== -->
+      <section class="hero-gradient">
+        <div class="mx-auto max-w-6xl px-6 pt-24 pb-20 md:pt-32 md:pb-28">
+          <div class="max-w-3xl mx-auto text-center">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest mb-8">
+              <span class="material-symbols-outlined text-[16px]">auto_awesome</span>
+              Digital Products
             </div>
-            <div class="mt-4">
-              <button
-                class="flex min-w-[160px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 px-6 bg-primary text-white text-base font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 transition-all shadow-lg shadow-primary/20">
-                <span class="truncate">Explore Products</span>
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-      <!-- SectionHeader -->
-      <section class="px-6 pt-12 pb-4">
-        <div class="flex items-center justify-between">
-          <h2 class="text-[#111418] dark:text-white text-2xl font-bold leading-tight tracking-[-0.015em]">Featured
-            Products</h2>
-          <span class="material-symbols-outlined text-gray-400">arrow_forward</span>
-        </div>
-      </section>
-      <!-- Card: FitMate AI -->
-      <section class="p-6 @container">
-        <div
-          class="flex flex-col items-stretch justify-start rounded-xl @xl:flex-row shadow-sm border border-gray-100 dark:border-gray-800 bg-white dark:bg-[#1a242f] overflow-hidden">
-          <div class="w-full @xl:w-1/2 bg-center bg-no-repeat aspect-video bg-cover"
-            data-alt="Smartphone showing a sleek fitness tracking application interface"
-            style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAUlQWbRV9MQu_cvMC1ltiHp59lNAxDYlEvma6rBOX26SY3XtQoDC9ZfHhCPOfKcR7kFN0kB1PDMuuQjeSkAV5tsZpiRRVtj-2h-TESd2Jw3nAyoVdTPIqoTMyW_TbtiaNyFgv0SHrNyMsVqyocgCXerw3BQb-gvLh6yW295ttn_aTotRqV-gSDxN-p6iwJ5DnD8KyKeH5JGEFqrb2KuXOcXQISsabBonvCi4I0dxw5VhgImejjjYSjFbbxsH86wYKJhw0WTZenkg");'>
-          </div>
-          <div class="flex w-full grow flex-col items-stretch justify-center gap-3 p-6 @xl:p-8">
-            <div>
-              <p class="text-primary text-xs font-bold uppercase tracking-widest mb-1">Wellness</p>
-              <p class="text-[#111418] dark:text-white text-2xl font-bold leading-tight tracking-[-0.015em]">FitMate AI
-              </p>
-            </div>
-            <p class="text-[#617589] dark:text-gray-400 text-base font-normal leading-relaxed">
-              Your personal fitness and nutrition assistant, powered by advanced machine learning to tailor every
-              workout to your goals.
+            <h1 class="text-4xl md:text-6xl font-black leading-[1.1] tracking-tight mb-6">
+              We craft products that
+              <span class="text-primary">make life better</span>.
+            </h1>
+            <p class="text-lg md:text-xl text-gray-500 dark:text-gray-400 leading-relaxed max-w-2xl mx-auto mb-10">
+              AI-powered wellness and productivity tools designed for everyone. Simple to use, reliable to depend on.
             </p>
-            <div class="pt-4">
-              <button
-                class="flex w-full @xl:w-auto min-w-[160px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 border-2 border-primary text-primary hover:bg-primary hover:text-white transition-all text-sm font-bold leading-normal">
-                <span class="truncate">Open product page</span>
-              </button>
+            <a href="#products" class="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-primary text-white font-bold text-base hover:bg-primary/90 transition-all shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30">
+              Explore Our Products
+              <span class="material-symbols-outlined text-[20px]">arrow_downward</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== PRODUCTS SECTION ===== -->
+      <section id="products" class="mx-auto max-w-6xl px-6 py-20 md:py-28">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4">Our Products</h2>
+          <p class="text-gray-500 dark:text-gray-400 text-lg max-w-lg mx-auto">Tools we've built with care to solve real problems.</p>
+        </div>
+
+        <!-- Products Grid — Add new product cards here -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+          <!-- ========== PRODUCT CARD: FitMate AI ========== -->
+          <a href="products/fitmateai/" class="product-card group flex flex-col rounded-2xl border border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark overflow-hidden">
+            <!-- Card Image / Preview -->
+            <div class="relative aspect-[4/3] bg-gradient-to-br from-emerald-400/20 to-emerald-600/10 dark:from-emerald-500/10 dark:to-emerald-700/5 flex items-center justify-center overflow-hidden">
+              <!-- Urun onizleme gorseli: images/fitmateai/preview.png dosyasini ekleyin -->
+              <img src="images/fitmateai/preview.png" alt="FitMate AI App Preview" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+              <div class="flex-col items-center gap-3 text-emerald-600 dark:text-emerald-400" style="display: none;">
+                <span class="material-symbols-outlined text-[64px]" style="font-variation-settings: 'FILL' 1;">fitness_center</span>
+                <span class="text-xs font-bold uppercase tracking-widest opacity-60">App Preview</span>
+              </div>
+              <!-- Category badge -->
+              <span class="absolute top-4 left-4 px-3 py-1 rounded-full bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 text-xs font-bold uppercase tracking-wider backdrop-blur-sm">
+                Wellness
+              </span>
+            </div>
+            <!-- Card Content -->
+            <div class="flex flex-col gap-3 p-6">
+              <div class="flex items-center gap-3">
+                <!-- Uygulama ikonu: images/fitmateai/icon.png dosyasini ekleyin -->
+                <img src="images/fitmateai/icon.png" alt="FitMate AI" class="w-10 h-10 rounded-xl shadow-sm" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-400 to-emerald-600 items-center justify-center shadow-sm" style="display: none;">
+                  <span class="material-symbols-outlined text-white text-[20px]" style="font-variation-settings: 'FILL' 1;">fitness_center</span>
+                </div>
+                <div>
+                  <h3 class="text-lg font-bold tracking-tight group-hover:text-primary transition-colors">FitMate AI</h3>
+                  <p class="text-xs text-gray-400 dark:text-gray-500">iOS & Android</p>
+                </div>
+              </div>
+              <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
+                AI-powered fitness companion with body analysis, personalized workouts, and nutrition tracking — all in one app.
+              </p>
+              <div class="flex items-center gap-1.5 text-primary text-sm font-semibold mt-1 group-hover:gap-3 transition-all">
+                Learn more
+                <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+              </div>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <!-- ===== ABOUT SECTION ===== -->
+      <section id="about" class="border-t border-border-light dark:border-border-dark">
+        <div class="mx-auto max-w-6xl px-6 py-20 md:py-28">
+          <div class="max-w-3xl mx-auto text-center">
+            <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-6">About nberimen</h2>
+            <p class="text-gray-500 dark:text-gray-400 text-lg leading-relaxed mb-8">
+              We're a small team passionate about building digital products that solve real problems. 
+              Our focus is on leveraging AI and modern technology to create tools that are 
+              intuitive, reliable, and genuinely useful in everyday life.
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-12">
+              <div class="flex flex-col items-center gap-3 p-6 rounded-xl bg-gray-50 dark:bg-surface-dark border border-border-light dark:border-border-dark">
+                <span class="material-symbols-outlined text-primary text-[32px]" style="font-variation-settings: 'FILL' 1;">psychology</span>
+                <h3 class="font-bold text-sm">AI-Powered</h3>
+                <p class="text-gray-400 text-xs text-center leading-relaxed">Leveraging machine learning for smarter experiences</p>
+              </div>
+              <div class="flex flex-col items-center gap-3 p-6 rounded-xl bg-gray-50 dark:bg-surface-dark border border-border-light dark:border-border-dark">
+                <span class="material-symbols-outlined text-primary text-[32px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+                <h3 class="font-bold text-sm">Reliable</h3>
+                <p class="text-gray-400 text-xs text-center leading-relaxed">Built with quality and stability as core principles</p>
+              </div>
+              <div class="flex flex-col items-center gap-3 p-6 rounded-xl bg-gray-50 dark:bg-surface-dark border border-border-light dark:border-border-dark">
+                <span class="material-symbols-outlined text-primary text-[32px]" style="font-variation-settings: 'FILL' 1;">person</span>
+                <h3 class="font-bold text-sm">User-First</h3>
+                <p class="text-gray-400 text-xs text-center leading-relaxed">Designed around real user needs and feedback</p>
+              </div>
             </div>
           </div>
         </div>
       </section>
-      <!-- Spacing to ensure generous whitespace -->
-      <div class="h-12"></div>
     </main>
-    <!-- Footer -->
-    <footer class="flex flex-col gap-8 px-6 py-12 text-center border-t border-gray-100 dark:border-gray-800 @container">
-      <nav class="flex flex-wrap items-center justify-center gap-x-12 gap-y-4" aria-label="Footer navigation">
-        <a class="text-[#617589] dark:text-gray-400 text-sm font-medium hover:text-primary transition-colors"
-          href="/products/fitmateai/privacy">
-          Privacy Policy
-        </a>
 
-        <a class="text-[#617589] dark:text-gray-400 text-sm font-medium hover:text-primary transition-colors"
-          href="/products/fitmateai/data-deletion">
-          Account & Personal Data Deletion
-        </a>
-
-        <a class="text-[#617589] dark:text-gray-400 text-sm font-medium hover:text-primary transition-colors"
-          href="/products/fitmateai/terms">
-          Terms of Service
-        </a>
-
-        <a class="text-[#617589] dark:text-gray-400 text-sm font-medium hover:text-primary transition-colors"
-          href="/products/fitmateai/support">
-          Product Support
-        </a>
-      </nav>
-
-      <div class="flex flex-col gap-2">
-        <p class="text-[#617589] dark:text-gray-500 text-xs font-normal">
-          © 2026 nberimen Digital Products. All rights reserved.
-        </p>
+    <!-- ===== FOOTER ===== -->
+    <footer class="border-t border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark">
+      <div class="mx-auto max-w-6xl px-6 py-12">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+          <!-- Footer brand -->
+          <div class="flex items-center gap-2">
+            <div class="w-7 h-7 rounded-md bg-primary flex items-center justify-center">
+              <span class="text-white font-black text-xs">n</span>
+            </div>
+            <span class="text-sm font-bold tracking-tight">nberimen</span>
+          </div>
+          <!-- Copyright -->
+          <p class="text-gray-400 dark:text-gray-500 text-xs">
+            &copy; 2026 nberimen. All rights reserved.
+          </p>
+        </div>
       </div>
     </footer>
-    <!-- Safety space for mobile home indicators -->
-    <div class="h-8 bg-white dark:bg-[#101922]"></div>
   </div>
 </body>
 

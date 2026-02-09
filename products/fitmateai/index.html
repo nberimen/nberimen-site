@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>FitMate AI — Your AI-Powered Fitness Companion</title>
+  <meta name="description" content="AI-powered fitness companion with body analysis, personalized workouts, and nutrition tracking. Available on iOS and Android.">
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            /* FitMate brand colors */
+            "fm-primary": "#11D473",
+            "fm-primary-dark": "#0eb361",
+            "fm-bg": "#0F172A",
+            "fm-surface": "#1E293B",
+            "fm-border": "#334155",
+            "fm-text": "#F1F5F9",
+            "fm-text-secondary": "#94A3B8",
+            /* Macro colors */
+            "fm-calories": "#FB923C",
+            "fm-protein": "#60A5FA",
+            "fm-carbs": "#FBBF24",
+            "fm-fat": "#EF4444",
+            /* Shared */
+            "primary": "#137fec",
+            "background-light": "#f8f9fb",
+            "background-dark": "#0b1120",
+            "surface-light": "#ffffff",
+            "surface-dark": "#131c2e",
+            "border-light": "#e5e8ed",
+            "border-dark": "#1e2a3f",
+          },
+          fontFamily: {
+            "display": ["Inter", "sans-serif"]
+          },
+          borderRadius: {
+            "DEFAULT": "0.5rem",
+            "lg": "1rem",
+            "xl": "1.5rem",
+            "2xl": "2rem",
+            "full": "9999px"
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    html { scroll-behavior: smooth; }
+    .hero-glow {
+      background: radial-gradient(ellipse 60% 40% at 50% 0%, rgba(17, 212, 115, 0.15) 0%, transparent 70%);
+    }
+    .dark .hero-glow {
+      background: radial-gradient(ellipse 60% 40% at 50% 0%, rgba(17, 212, 115, 0.1) 0%, transparent 70%);
+    }
+    .feature-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .feature-card:hover {
+      transform: translateY(-2px);
+    }
+    .phone-mockup {
+      background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%);
+      border: 3px solid #334155;
+      border-radius: 2rem;
+      padding: 0.5rem;
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.3);
+    }
+    .screenshot-placeholder {
+      background: linear-gradient(135deg, #0F172A 0%, #1a2640 100%);
+      border-radius: 1.5rem;
+    }
+    .glow-green {
+      box-shadow: 0 0 60px rgba(17, 212, 115, 0.15);
+    }
+  </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark text-gray-900 dark:text-gray-100 transition-colors duration-300">
+  <div class="min-h-screen flex flex-col">
+    <!-- ===== HEADER ===== -->
+    <header class="sticky top-0 z-50 backdrop-blur-lg bg-white/80 dark:bg-background-dark/80 border-b border-border-light dark:border-border-dark">
+      <div class="mx-auto max-w-6xl px-6 h-16 flex items-center justify-between">
+        <!-- Back to nberimen -->
+        <a href="../../" class="flex items-center gap-2 group text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">
+          <span class="material-symbols-outlined text-[20px]">arrow_back</span>
+          <span class="text-sm font-medium">nberimen</span>
+        </a>
+        <!-- FitMate branding -->
+        <div class="flex items-center gap-2.5">
+          <img src="../../images/fitmateai/icon.png" alt="FitMate AI" class="w-10 h-10 rounded-xl shadow-sm" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+              <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-fm-primary to-fm-primary-dark flex items-center justify-center shadow-sm" style="display: none;">
+                <span class="material-symbols-outlined text-white text-[18px]" style="font-variation-settings: 'FILL' 1;">fitness_center</span>
+              </div>
+          <span class="text-lg font-bold tracking-tight">FitMate AI</span>
+        </div>
+        <!-- Dark mode toggle -->
+        <button onclick="document.documentElement.classList.toggle('dark')" class="w-9 h-9 rounded-lg flex items-center justify-center hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" aria-label="Toggle dark mode">
+          <span class="material-symbols-outlined text-[20px] dark:hidden">dark_mode</span>
+          <span class="material-symbols-outlined text-[20px] hidden dark:inline">light_mode</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="flex-grow">
+      <!-- ===== HERO SECTION ===== -->
+      <section class="hero-glow relative overflow-hidden">
+        <div class="mx-auto max-w-6xl px-6 pt-20 pb-16 md:pt-28 md:pb-24">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            <!-- Hero Text -->
+            <div class="text-center lg:text-left">
+              <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-fm-primary/10 text-fm-primary text-xs font-bold uppercase tracking-widest mb-8">
+                <span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">fitness_center</span>
+                AI-Powered Fitness
+              </div>
+              <h1 class="text-4xl md:text-5xl lg:text-[3.5rem] font-black leading-[1.1] tracking-tight mb-6">
+                Your fitness journey
+                <span class="text-fm-primary">starts here</span>.
+              </h1>
+              <p class="text-lg text-gray-500 dark:text-gray-400 leading-relaxed mb-10 max-w-lg mx-auto lg:mx-0">
+                Personalized workouts, AI body analysis, and nutrition tracking — all in one beautifully designed app.
+              </p>
+              <!-- Store Buttons -->
+              <div class="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start">
+                <!-- App Store placeholder -->
+                <a href="#" class="inline-flex items-center gap-3 px-6 py-3.5 rounded-xl bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-semibold text-sm hover:opacity-90 transition-opacity">
+                  <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                  <div class="flex flex-col leading-tight">
+                    <span class="text-[10px] opacity-80">Download on the</span>
+                    <span class="text-base font-bold -mt-0.5">App Store</span>
+                  </div>
+                </a>
+                <!-- Google Play placeholder -->
+                <a href="#" class="inline-flex items-center gap-3 px-6 py-3.5 rounded-xl bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-semibold text-sm hover:opacity-90 transition-opacity">
+                  <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.61 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.5,12.92 20.16,13.19L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/></svg>
+                  <div class="flex flex-col leading-tight">
+                    <span class="text-[10px] opacity-80">Get it on</span>
+                    <span class="text-base font-bold -mt-0.5">Google Play</span>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <!-- Hero Phone Mockup -->
+            <div class="flex justify-center lg:justify-end">
+              <div class="phone-mockup glow-green w-[280px] md:w-[300px]">
+                <div class="screenshot-placeholder aspect-[9/19] flex flex-col items-center justify-center gap-4 p-6">
+                  <!-- Placeholder: Replace with actual app screenshot -->
+                  <div class="w-16 h-16 rounded-2xl bg-fm-primary/20 flex items-center justify-center">
+                    <span class="material-symbols-outlined text-fm-primary text-[36px]" style="font-variation-settings: 'FILL' 1;">fitness_center</span>
+                  </div>
+                  <span class="text-fm-text-secondary text-xs font-medium uppercase tracking-widest">FitMate AI</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== FEATURES SECTION ===== -->
+      <section id="features" class="border-t border-border-light dark:border-border-dark">
+        <div class="mx-auto max-w-6xl px-6 py-20 md:py-28">
+          <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4">Everything you need to reach your goals</h2>
+            <p class="text-gray-500 dark:text-gray-400 text-lg max-w-xl mx-auto">Three powerful tools working together to transform your fitness journey.</p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Feature 1: AI Body Analysis -->
+            <div class="feature-card flex flex-col gap-5 p-8 rounded-2xl border border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark">
+              <div class="w-14 h-14 rounded-2xl bg-purple-500/10 flex items-center justify-center">
+                <span class="material-symbols-outlined text-purple-500 text-[28px]" style="font-variation-settings: 'FILL' 1;">body_system</span>
+              </div>
+              <div>
+                <h3 class="text-lg font-bold mb-2">AI Body Analysis</h3>
+                <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
+                  Upload a photo and get instant AI-powered analysis of your posture, muscle development, and body fat percentage. Track your transformation over time.
+                </p>
+              </div>
+              <div class="flex flex-wrap gap-2 mt-auto pt-2">
+                <span class="px-2.5 py-1 rounded-md bg-purple-500/10 text-purple-500 dark:text-purple-400 text-xs font-medium">Posture</span>
+                <span class="px-2.5 py-1 rounded-md bg-purple-500/10 text-purple-500 dark:text-purple-400 text-xs font-medium">Muscle</span>
+                <span class="px-2.5 py-1 rounded-md bg-purple-500/10 text-purple-500 dark:text-purple-400 text-xs font-medium">Body Fat</span>
+              </div>
+            </div>
+
+            <!-- Feature 2: Workout Programs -->
+            <div class="feature-card flex flex-col gap-5 p-8 rounded-2xl border border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark">
+              <div class="w-14 h-14 rounded-2xl bg-fm-primary/10 flex items-center justify-center">
+                <span class="material-symbols-outlined text-fm-primary text-[28px]" style="font-variation-settings: 'FILL' 1;">exercise</span>
+              </div>
+              <div>
+                <h3 class="text-lg font-bold mb-2">Personalized Workouts</h3>
+                <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
+                  Get weekly workout programs tailored to your goals, experience level, and focus areas. Track exercises, sets, and rest days effortlessly.
+                </p>
+              </div>
+              <div class="flex flex-wrap gap-2 mt-auto pt-2">
+                <span class="px-2.5 py-1 rounded-md bg-fm-primary/10 text-fm-primary text-xs font-medium">Weekly Plans</span>
+                <span class="px-2.5 py-1 rounded-md bg-fm-primary/10 text-fm-primary text-xs font-medium">Exercise Library</span>
+                <span class="px-2.5 py-1 rounded-md bg-fm-primary/10 text-fm-primary text-xs font-medium">Tracking</span>
+              </div>
+            </div>
+
+            <!-- Feature 3: Nutrition Tracking -->
+            <div class="feature-card flex flex-col gap-5 p-8 rounded-2xl border border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark">
+              <div class="w-14 h-14 rounded-2xl bg-fm-calories/10 flex items-center justify-center">
+                <span class="material-symbols-outlined text-fm-calories text-[28px]" style="font-variation-settings: 'FILL' 1;">restaurant</span>
+              </div>
+              <div>
+                <h3 class="text-lg font-bold mb-2">Nutrition Tracking</h3>
+                <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
+                  Log your meals, track calories and macros (protein, carbs, fat), monitor water intake, and get a clear daily nutrition summary.
+                </p>
+              </div>
+              <div class="flex flex-wrap gap-2 mt-auto pt-2">
+                <span class="px-2.5 py-1 rounded-md bg-fm-protein/10 text-fm-protein text-xs font-medium">Protein</span>
+                <span class="px-2.5 py-1 rounded-md bg-fm-carbs/10 text-fm-carbs text-xs font-medium">Carbs</span>
+                <span class="px-2.5 py-1 rounded-md bg-fm-fat/10 text-fm-fat text-xs font-medium">Fat</span>
+                <span class="px-2.5 py-1 rounded-md bg-fm-calories/10 text-fm-calories text-xs font-medium">Calories</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== SCREENSHOTS SECTION ===== -->
+      <section class="border-t border-border-light dark:border-border-dark bg-gray-50 dark:bg-surface-dark/50">
+        <div class="mx-auto max-w-6xl px-6 py-20 md:py-28">
+          <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4">See it in action</h2>
+            <p class="text-gray-500 dark:text-gray-400 text-lg max-w-lg mx-auto">A beautiful, intuitive interface designed for your daily fitness routine.</p>
+          </div>
+
+          <!-- Screenshots Grid — Replace placeholders with actual app screenshots -->
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+            <!-- Screenshot 1 -->
+            <div class="phone-mockup !border-2 !rounded-xl !p-1">
+              <div class="screenshot-placeholder !rounded-lg aspect-[9/19] flex flex-col items-center justify-center gap-2 p-4">
+                <span class="material-symbols-outlined text-fm-primary/40 text-[32px]" style="font-variation-settings: 'FILL' 1;">home</span>
+                <span class="text-fm-text-secondary/50 text-[10px] font-medium text-center">Home Dashboard</span>
+              </div>
+            </div>
+            <!-- Screenshot 2 -->
+            <div class="phone-mockup !border-2 !rounded-xl !p-1">
+              <div class="screenshot-placeholder !rounded-lg aspect-[9/19] flex flex-col items-center justify-center gap-2 p-4">
+                <span class="material-symbols-outlined text-purple-400/40 text-[32px]" style="font-variation-settings: 'FILL' 1;">body_system</span>
+                <span class="text-fm-text-secondary/50 text-[10px] font-medium text-center">AI Analysis</span>
+              </div>
+            </div>
+            <!-- Screenshot 3 -->
+            <div class="phone-mockup !border-2 !rounded-xl !p-1">
+              <div class="screenshot-placeholder !rounded-lg aspect-[9/19] flex flex-col items-center justify-center gap-2 p-4">
+                <span class="material-symbols-outlined text-fm-primary/40 text-[32px]" style="font-variation-settings: 'FILL' 1;">exercise</span>
+                <span class="text-fm-text-secondary/50 text-[10px] font-medium text-center">Workout Plan</span>
+              </div>
+            </div>
+            <!-- Screenshot 4 -->
+            <div class="phone-mockup !border-2 !rounded-xl !p-1">
+              <div class="screenshot-placeholder !rounded-lg aspect-[9/19] flex flex-col items-center justify-center gap-2 p-4">
+                <span class="material-symbols-outlined text-fm-calories/40 text-[32px]" style="font-variation-settings: 'FILL' 1;">restaurant</span>
+                <span class="text-fm-text-secondary/50 text-[10px] font-medium text-center">Nutrition</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== HOW IT WORKS SECTION ===== -->
+      <section class="border-t border-border-light dark:border-border-dark">
+        <div class="mx-auto max-w-6xl px-6 py-20 md:py-28">
+          <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4">How it works</h2>
+            <p class="text-gray-500 dark:text-gray-400 text-lg max-w-lg mx-auto">Get started in minutes and let FitMate guide your journey.</p>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <!-- Step 1 -->
+            <div class="flex flex-col items-center text-center gap-4">
+              <div class="w-12 h-12 rounded-full bg-fm-primary/10 flex items-center justify-center text-fm-primary font-black text-lg">1</div>
+              <h3 class="font-bold">Create Your Profile</h3>
+              <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">Tell us about your goals, experience level, and focus areas during onboarding.</p>
+            </div>
+            <!-- Step 2 -->
+            <div class="flex flex-col items-center text-center gap-4">
+              <div class="w-12 h-12 rounded-full bg-fm-primary/10 flex items-center justify-center text-fm-primary font-black text-lg">2</div>
+              <h3 class="font-bold">Get Your Plan</h3>
+              <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">Receive personalized workout programs and nutrition guidance tailored to you.</p>
+            </div>
+            <!-- Step 3 -->
+            <div class="flex flex-col items-center text-center gap-4">
+              <div class="w-12 h-12 rounded-full bg-fm-primary/10 flex items-center justify-center text-fm-primary font-black text-lg">3</div>
+              <h3 class="font-bold">Track Progress</h3>
+              <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">Log workouts, meals, and use AI body analysis to monitor your transformation.</p>
+            </div>
+            <!-- Step 4 -->
+            <div class="flex flex-col items-center text-center gap-4">
+              <div class="w-12 h-12 rounded-full bg-fm-primary/10 flex items-center justify-center text-fm-primary font-black text-lg">4</div>
+              <h3 class="font-bold">Achieve Goals</h3>
+              <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">Stay motivated with daily insights and see real results over time.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== PREMIUM SECTION ===== -->
+      <section class="border-t border-border-light dark:border-border-dark bg-gray-50 dark:bg-surface-dark/50">
+        <div class="mx-auto max-w-6xl px-6 py-20 md:py-28">
+          <div class="max-w-3xl mx-auto">
+            <div class="text-center mb-12">
+              <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/10 text-amber-500 text-xs font-bold uppercase tracking-widest mb-6">
+                <span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+                Premium
+              </div>
+              <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4">Unlock the full experience</h2>
+              <p class="text-gray-500 dark:text-gray-400 text-lg">Take your fitness to the next level with premium features.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="flex items-start gap-4 p-5 rounded-xl bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark">
+                <div class="w-10 h-10 rounded-lg bg-purple-500/10 flex items-center justify-center flex-shrink-0">
+                  <span class="material-symbols-outlined text-purple-500 text-[20px]" style="font-variation-settings: 'FILL' 1;">body_system</span>
+                </div>
+                <div>
+                  <h4 class="font-bold text-sm mb-1">Unlimited AI Analysis</h4>
+                  <p class="text-gray-400 text-xs leading-relaxed">Unlimited body scans for continuous progress tracking.</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-4 p-5 rounded-xl bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark">
+                <div class="w-10 h-10 rounded-lg bg-fm-primary/10 flex items-center justify-center flex-shrink-0">
+                  <span class="material-symbols-outlined text-fm-primary text-[20px]" style="font-variation-settings: 'FILL' 1;">tune</span>
+                </div>
+                <div>
+                  <h4 class="font-bold text-sm mb-1">Advanced Personalization</h4>
+                  <p class="text-gray-400 text-xs leading-relaxed">Deep customization for workouts and nutrition plans.</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-4 p-5 rounded-xl bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark">
+                <div class="w-10 h-10 rounded-lg bg-fm-calories/10 flex items-center justify-center flex-shrink-0">
+                  <span class="material-symbols-outlined text-fm-calories text-[20px]" style="font-variation-settings: 'FILL' 1;">block</span>
+                </div>
+                <div>
+                  <h4 class="font-bold text-sm mb-1">Ad-Free Experience</h4>
+                  <p class="text-gray-400 text-xs leading-relaxed">Enjoy a completely clean, distraction-free interface.</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-4 p-5 rounded-xl bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark">
+                <div class="w-10 h-10 rounded-lg bg-fm-protein/10 flex items-center justify-center flex-shrink-0">
+                  <span class="material-symbols-outlined text-fm-protein text-[20px]" style="font-variation-settings: 'FILL' 1;">trending_up</span>
+                </div>
+                <div>
+                  <h4 class="font-bold text-sm mb-1">Priority Support</h4>
+                  <p class="text-gray-400 text-xs leading-relaxed">Get help faster with dedicated premium support.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== CTA SECTION ===== -->
+      <section class="border-t border-border-light dark:border-border-dark">
+        <div class="mx-auto max-w-6xl px-6 py-20 md:py-28">
+          <div class="max-w-2xl mx-auto text-center">
+            <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-6">
+              Ready to start your
+              <span class="text-fm-primary">transformation</span>?
+            </h2>
+            <p class="text-gray-500 dark:text-gray-400 text-lg leading-relaxed mb-10">
+              Download FitMate AI today and join thousands of people reaching their fitness goals with the power of AI.
+            </p>
+            <div class="flex flex-col sm:flex-row items-center gap-4 justify-center">
+              <a href="#" class="inline-flex items-center gap-3 px-6 py-3.5 rounded-xl bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-semibold text-sm hover:opacity-90 transition-opacity">
+                <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                <div class="flex flex-col leading-tight">
+                  <span class="text-[10px] opacity-80">Download on the</span>
+                  <span class="text-base font-bold -mt-0.5">App Store</span>
+                </div>
+              </a>
+              <a href="#" class="inline-flex items-center gap-3 px-6 py-3.5 rounded-xl bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-semibold text-sm hover:opacity-90 transition-opacity">
+                <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.61 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.5,12.92 20.16,13.19L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/></svg>
+                <div class="flex flex-col leading-tight">
+                  <span class="text-[10px] opacity-80">Get it on</span>
+                  <span class="text-base font-bold -mt-0.5">Google Play</span>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== SUPPORTED LANGUAGES ===== -->
+      <section class="border-t border-border-light dark:border-border-dark bg-gray-50 dark:bg-surface-dark/50">
+        <div class="mx-auto max-w-6xl px-6 py-12">
+          <p class="text-center text-gray-400 dark:text-gray-500 text-sm mb-4 font-medium">Available in 10 languages</p>
+          <div class="flex flex-wrap items-center justify-center gap-3">
+            <span class="px-3 py-1.5 rounded-full bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark text-xs font-medium text-gray-500 dark:text-gray-400">English</span>
+            <span class="px-3 py-1.5 rounded-full bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark text-xs font-medium text-gray-500 dark:text-gray-400">Turkish</span>
+            <span class="px-3 py-1.5 rounded-full bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark text-xs font-medium text-gray-500 dark:text-gray-400">German</span>
+            <span class="px-3 py-1.5 rounded-full bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark text-xs font-medium text-gray-500 dark:text-gray-400">French</span>
+            <span class="px-3 py-1.5 rounded-full bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark text-xs font-medium text-gray-500 dark:text-gray-400">Spanish</span>
+            <span class="px-3 py-1.5 rounded-full bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark text-xs font-medium text-gray-500 dark:text-gray-400">Italian</span>
+            <span class="px-3 py-1.5 rounded-full bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark text-xs font-medium text-gray-500 dark:text-gray-400">Russian</span>
+            <span class="px-3 py-1.5 rounded-full bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark text-xs font-medium text-gray-500 dark:text-gray-400">Portuguese</span>
+            <span class="px-3 py-1.5 rounded-full bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark text-xs font-medium text-gray-500 dark:text-gray-400">Chinese</span>
+            <span class="px-3 py-1.5 rounded-full bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark text-xs font-medium text-gray-500 dark:text-gray-400">Arabic</span>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="border-t border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark">
+      <div class="mx-auto max-w-6xl px-6 py-12">
+        <div class="flex flex-col gap-8">
+          <!-- Footer top -->
+          <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex items-center gap-2.5">
+              <img src="../../images/fitmateai/icon.png" alt="FitMate AI" class="w-10 h-10 rounded-xl shadow-sm" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+              <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-fm-primary to-fm-primary-dark flex items-center justify-center shadow-sm" style="display: none;">
+                <span class="material-symbols-outlined text-white text-[18px]" style="font-variation-settings: 'FILL' 1;">fitness_center</span>
+              </div>
+              <span class="font-bold tracking-tight">FitMate AI</span>
+              <span class="text-gray-400 dark:text-gray-500 text-xs">by nberimen</span>
+            </div>
+            <nav class="flex flex-wrap items-center justify-center gap-x-8 gap-y-3" aria-label="Footer navigation">
+              <a class="text-gray-400 dark:text-gray-500 text-sm font-medium hover:text-fm-primary transition-colors" href="privacy.html">Privacy Policy</a>
+              <a class="text-gray-400 dark:text-gray-500 text-sm font-medium hover:text-fm-primary transition-colors" href="terms.html">Terms of Service</a>
+              <a class="text-gray-400 dark:text-gray-500 text-sm font-medium hover:text-fm-primary transition-colors" href="support.html">Support</a>
+              <a class="text-gray-400 dark:text-gray-500 text-sm font-medium hover:text-fm-primary transition-colors" href="data-deletion.html">Data Deletion</a>
+            </nav>
+          </div>
+          <!-- Footer bottom -->
+          <div class="flex flex-col md:flex-row items-center justify-between gap-4 pt-6 border-t border-border-light dark:border-border-dark">
+            <a href="../../" class="flex items-center gap-2 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 transition-colors">
+              <div class="w-5 h-5 rounded bg-gray-300 dark:bg-gray-600 flex items-center justify-center">
+                <span class="text-white font-black text-[8px]">n</span>
+              </div>
+              <span class="text-xs font-medium">nberimen.com</span>
+            </a>
+            <p class="text-gray-400 dark:text-gray-500 text-xs">
+              &copy; 2026 nberimen. All rights reserved.
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+</body>
+
+</html>
