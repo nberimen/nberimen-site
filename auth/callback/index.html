@@ -49,7 +49,6 @@
     }
     .btn:hover { opacity: 0.85; }
     .note { font-size: 12px; color: #6b7280; margin-top: 16px; }
-    .hidden { display: none; }
   </style>
 </head>
 <body>
@@ -63,12 +62,46 @@
 
   <script>
     (function() {
+      // Query params — Supabase PKCE redirect ?code=xxx veya custom email template ?token_hash=xxx
       var params = new URLSearchParams(window.location.search);
+      var action = params.get('action') || 'reset-password';
+      var code = params.get('code') || '';
       var tokenHash = params.get('token_hash') || '';
       var type = params.get('type') || '';
-      var action = params.get('action') || 'reset-password';
 
-      if (!tokenHash || !type) {
+      // Hash fragment — Supabase implicit flow #access_token=xxx&refresh_token=yyy
+      var hash = window.location.hash.substring(1);
+      var hashParams = new URLSearchParams(hash);
+      var accessToken = hashParams.get('access_token') || '';
+      var refreshToken = hashParams.get('refresh_token') || '';
+      if (!type) type = hashParams.get('type') || '';
+
+      // Deep link oluştur
+      var deepLink = 'fitmate://' + encodeURIComponent(action);
+      var dlParams = [];
+
+      if (code) {
+        dlParams.push('code=' + encodeURIComponent(code));
+      }
+      if (tokenHash) {
+        dlParams.push('token_hash=' + encodeURIComponent(tokenHash));
+      }
+      if (accessToken) {
+        dlParams.push('access_token=' + encodeURIComponent(accessToken));
+      }
+      if (refreshToken) {
+        dlParams.push('refresh_token=' + encodeURIComponent(refreshToken));
+      }
+      if (type) {
+        dlParams.push('type=' + encodeURIComponent(type));
+      }
+
+      if (dlParams.length > 0) {
+        deepLink += '?' + dlParams.join('&');
+      }
+
+      // Parametresiz geldiyse hata göster
+      if (!code && !tokenHash && !accessToken) {
         document.getElementById('title').textContent = 'Invalid Link';
         document.getElementById('message').textContent = 'This link is invalid or has expired.';
         document.getElementById('spinner').style.display = 'none';
@@ -77,17 +110,15 @@
         return;
       }
 
-      var deepLink = 'fitmate://' + encodeURIComponent(action) + '?token_hash=' + encodeURIComponent(tokenHash) + '&type=' + encodeURIComponent(type);
-
       // Manuel buton
       document.getElementById('open-app').href = deepLink;
 
-      // Otomatik yönlendirme (kısa gecikme ile)
+      // Otomatik yönlendirme
       setTimeout(function() {
         window.location.href = deepLink;
       }, 500);
 
-      // 3 saniye sonra hala sayfadaysak, spinner'ı gizle
+      // 3 saniye sonra hala sayfadaysak
       setTimeout(function() {
         document.getElementById('spinner').style.display = 'none';
         document.getElementById('title').textContent = 'App Could Not Be Opened';
