@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>ChronosMerge — Sync the Universe</title>
+  <meta name="description" content="A time-themed merge puzzle game. Match and merge time units on a 6×6 grid — from Seconds to Eons. Free to play on iOS & Android.">
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            /* ChronosMerge brand colors */
+            "cm-primary": "#43e2d2",
+            "cm-primary-dark": "#2bc4b5",
+            "cm-accent": "#c1c1fc",
+            "cm-void": "#0A0E21",
+            "cm-surface": "#131316",
+            "cm-border": "#27272A",
+            "cm-text": "#FAFAFA",
+            "cm-text-secondary": "#A1A1AA",
+            "cm-gold": "#FFD700",
+            "cm-energy": "#40E0D0",
+            /* Shared */
+            "primary": "#137fec",
+            "background-light": "#f8f9fb",
+            "background-dark": "#0b1120",
+            "surface-light": "#ffffff",
+            "surface-dark": "#131c2e",
+            "border-light": "#e5e8ed",
+            "border-dark": "#1e2a3f",
+          },
+          fontFamily: {
+            "display": ["Inter", "sans-serif"]
+          },
+          borderRadius: {
+            "DEFAULT": "0.5rem",
+            "lg": "1rem",
+            "xl": "1.5rem",
+            "2xl": "2rem",
+            "full": "9999px"
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    html { scroll-behavior: smooth; }
+    .hero-glow {
+      background: radial-gradient(ellipse 60% 40% at 50% 0%, rgba(67, 226, 210, 0.12) 0%, transparent 70%);
+    }
+    .dark .hero-glow {
+      background: radial-gradient(ellipse 60% 40% at 50% 0%, rgba(67, 226, 210, 0.08) 0%, transparent 70%);
+    }
+    .feature-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .feature-card:hover {
+      transform: translateY(-2px);
+    }
+    .phone-mockup {
+      background: linear-gradient(135deg, #131316 0%, #0A0E21 100%);
+      border: 3px solid #27272A;
+      border-radius: 2rem;
+      padding: 0.5rem;
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.3);
+    }
+    .screenshot-placeholder {
+      background: linear-gradient(135deg, #0A0E21 0%, #1A1B4B 100%);
+      border-radius: 1.5rem;
+    }
+    .glow-teal {
+      box-shadow: 0 0 60px rgba(67, 226, 210, 0.15);
+    }
+    .tier-chain {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+    .tier-chain span.arrow {
+      color: #43e2d2;
+      font-size: 0.75rem;
+    }
+  </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark text-gray-900 dark:text-gray-100 transition-colors duration-300">
+  <div class="min-h-screen flex flex-col">
+    <!-- ===== HEADER ===== -->
+    <header class="sticky top-0 z-50 backdrop-blur-lg bg-white/80 dark:bg-background-dark/80 border-b border-border-light dark:border-border-dark">
+      <div class="mx-auto max-w-6xl px-6 h-16 flex items-center justify-between">
+        <!-- Back to nberimen -->
+        <a href="../../" class="flex items-center gap-2 group text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">
+          <span class="material-symbols-outlined text-[20px]">arrow_back</span>
+          <span class="text-sm font-medium">nberimen</span>
+        </a>
+        <!-- ChronosMerge branding -->
+        <div class="flex items-center gap-2.5">
+          <img src="../../images/chronosmerge/icon.png" alt="ChronosMerge" class="w-10 h-10 rounded-xl shadow-sm" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+              <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-cm-primary to-cm-accent flex items-center justify-center shadow-sm" style="display: none;">
+                <span class="material-symbols-outlined text-white text-[18px]" style="font-variation-settings: 'FILL' 1;">schedule</span>
+              </div>
+          <span class="text-lg font-bold tracking-tight">ChronosMerge</span>
+        </div>
+        <!-- Dark mode toggle -->
+        <button onclick="document.documentElement.classList.toggle('dark')" class="w-9 h-9 rounded-lg flex items-center justify-center hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" aria-label="Toggle dark mode">
+          <span class="material-symbols-outlined text-[20px] dark:hidden">dark_mode</span>
+          <span class="material-symbols-outlined text-[20px] hidden dark:inline">light_mode</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="flex-grow">
+      <!-- ===== HERO SECTION ===== -->
+      <section class="hero-glow relative overflow-hidden">
+        <div class="mx-auto max-w-6xl px-6 pt-20 pb-16 md:pt-28 md:pb-24">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            <!-- Hero Text -->
+            <div class="text-center lg:text-left">
+              <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cm-primary/10 text-cm-primary text-xs font-bold uppercase tracking-widest mb-8">
+                <span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">schedule</span>
+                Merge Puzzle Game
+              </div>
+              <h1 class="text-4xl md:text-5xl lg:text-[3.5rem] font-black leading-[1.1] tracking-tight mb-6">
+                Sync the
+                <span class="text-cm-primary">Universe</span> ⏳
+              </h1>
+              <p class="text-lg text-gray-500 dark:text-gray-400 leading-relaxed mb-10 max-w-lg mx-auto lg:mx-0">
+                A time-themed merge puzzle game. Match and merge time units on a 6×6 grid — evolve from Seconds all the way to Eons!
+              </p>
+              <!-- Store Buttons -->
+              <div class="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start">
+                <!-- App Store placeholder -->
+                <a href="#" class="inline-flex items-center gap-3 px-6 py-3.5 rounded-xl bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-semibold text-sm hover:opacity-90 transition-opacity">
+                  <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                  <div class="flex flex-col leading-tight">
+                    <span class="text-[10px] opacity-80">Download on the</span>
+                    <span class="text-base font-bold -mt-0.5">App Store</span>
+                  </div>
+                </a>
+                <!-- Google Play placeholder -->
+                <a href="#" class="inline-flex items-center gap-3 px-6 py-3.5 rounded-xl bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-semibold text-sm hover:opacity-90 transition-opacity">
+                  <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.61 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.5,12.92 20.16,13.19L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/></svg>
+                  <div class="flex flex-col leading-tight">
+                    <span class="text-[10px] opacity-80">Get it on</span>
+                    <span class="text-base font-bold -mt-0.5">Google Play</span>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <!-- Hero Phone Mockup -->
+            <div class="flex justify-center lg:justify-end">
+              <div class="phone-mockup glow-teal w-[280px] md:w-[300px]">
+                <div class="screenshot-placeholder aspect-[9/19] flex flex-col items-center justify-center gap-4 p-6">
+                  <!-- Placeholder: Replace with actual app screenshot -->
+                  <div class="w-16 h-16 rounded-2xl bg-cm-primary/20 flex items-center justify-center">
+                    <span class="material-symbols-outlined text-cm-primary text-[36px]" style="font-variation-settings: 'FILL' 1;">schedule</span>
+                  </div>
+                  <span class="text-cm-text-secondary text-xs font-medium uppercase tracking-widest">ChronosMerge</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== TIER CHAIN SECTION ===== -->
+      <section class="border-t border-border-light dark:border-border-dark bg-gray-50 dark:bg-surface-dark/50">
+        <div class="mx-auto max-w-6xl px-6 py-12">
+          <p class="text-center text-gray-400 dark:text-gray-500 text-sm mb-5 font-medium">The Merge Chain</p>
+          <div class="tier-chain">
+            <span class="px-3 py-1.5 rounded-full bg-cm-primary/10 border border-cm-primary/20 text-cm-primary text-xs font-bold">Second</span>
+            <span class="arrow">→</span>
+            <span class="px-3 py-1.5 rounded-full bg-cm-primary/10 border border-cm-primary/20 text-cm-primary text-xs font-bold">Minute</span>
+            <span class="arrow">→</span>
+            <span class="px-3 py-1.5 rounded-full bg-cm-primary/10 border border-cm-primary/20 text-cm-primary text-xs font-bold">Hour</span>
+            <span class="arrow">→</span>
+            <span class="px-3 py-1.5 rounded-full bg-cm-primary/10 border border-cm-primary/20 text-cm-primary text-xs font-bold">Day</span>
+            <span class="arrow">→</span>
+            <span class="px-3 py-1.5 rounded-full bg-cm-accent/10 border border-cm-accent/20 text-cm-accent text-xs font-bold">Week</span>
+            <span class="arrow">→</span>
+            <span class="px-3 py-1.5 rounded-full bg-cm-accent/10 border border-cm-accent/20 text-cm-accent text-xs font-bold">Month</span>
+            <span class="arrow">→</span>
+            <span class="px-3 py-1.5 rounded-full bg-cm-accent/10 border border-cm-accent/20 text-cm-accent text-xs font-bold">Year</span>
+            <span class="arrow">→</span>
+            <span class="px-3 py-1.5 rounded-full bg-cm-gold/10 border border-cm-gold/20 text-cm-gold text-xs font-bold">Century</span>
+            <span class="arrow">→</span>
+            <span class="px-3 py-1.5 rounded-full bg-cm-gold/10 border border-cm-gold/20 text-cm-gold text-xs font-bold">Millennium</span>
+            <span class="arrow">→</span>
+            <span class="px-3 py-1.5 rounded-full bg-cm-gold/10 border border-cm-gold/20 text-cm-gold text-xs font-bold">Epoch</span>
+            <span class="arrow">→</span>
+            <span class="px-3 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400 text-xs font-bold">Eon</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== FEATURES SECTION ===== -->
+      <section id="features" class="border-t border-border-light dark:border-border-dark">
+        <div class="mx-auto max-w-6xl px-6 py-20 md:py-28">
+          <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4">Master time itself</h2>
+            <p class="text-gray-500 dark:text-gray-400 text-lg max-w-xl mx-auto">Addictive merge mechanics with strategic depth — simple to learn, hard to master.</p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Feature 1: Merge Puzzle -->
+            <div class="feature-card flex flex-col gap-5 p-8 rounded-2xl border border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark">
+              <div class="w-14 h-14 rounded-2xl bg-cm-primary/10 flex items-center justify-center">
+                <span class="material-symbols-outlined text-cm-primary text-[28px]" style="font-variation-settings: 'FILL' 1;">grid_view</span>
+              </div>
+              <div>
+                <h3 class="text-lg font-bold mb-2">6×6 Merge Grid</h3>
+                <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
+                  Place time units on the grid and match 3 or more of the same kind to merge them into a higher tier. Plan your moves carefully!
+                </p>
+              </div>
+              <div class="flex flex-wrap gap-2 mt-auto pt-2">
+                <span class="px-2.5 py-1 rounded-md bg-cm-primary/10 text-cm-primary text-xs font-medium">Match 3+</span>
+                <span class="px-2.5 py-1 rounded-md bg-cm-primary/10 text-cm-primary text-xs font-medium">Strategy</span>
+                <span class="px-2.5 py-1 rounded-md bg-cm-primary/10 text-cm-primary text-xs font-medium">Cascades</span>
+              </div>
+            </div>
+
+            <!-- Feature 2: Chrono Power -->
+            <div class="feature-card flex flex-col gap-5 p-8 rounded-2xl border border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark">
+              <div class="w-14 h-14 rounded-2xl bg-cm-accent/10 flex items-center justify-center">
+                <span class="material-symbols-outlined text-cm-accent text-[28px]" style="font-variation-settings: 'FILL' 1;">bolt</span>
+              </div>
+              <div>
+                <h3 class="text-lg font-bold mb-2">Chrono Power</h3>
+                <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
+                  Every merge fills your Chrono Power gauge. When it's full, you earn bonus coins. Chain cascading merges to fill it faster!
+                </p>
+              </div>
+              <div class="flex flex-wrap gap-2 mt-auto pt-2">
+                <span class="px-2.5 py-1 rounded-md bg-cm-accent/10 text-cm-accent text-xs font-medium">Power Gauge</span>
+                <span class="px-2.5 py-1 rounded-md bg-cm-accent/10 text-cm-accent text-xs font-medium">Bonus Coins</span>
+                <span class="px-2.5 py-1 rounded-md bg-cm-accent/10 text-cm-accent text-xs font-medium">Chains</span>
+              </div>
+            </div>
+
+            <!-- Feature 3: Skills -->
+            <div class="feature-card flex flex-col gap-5 p-8 rounded-2xl border border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark">
+              <div class="w-14 h-14 rounded-2xl bg-cm-gold/10 flex items-center justify-center">
+                <span class="material-symbols-outlined text-cm-gold text-[28px]" style="font-variation-settings: 'FILL' 1;">auto_fix_high</span>
+              </div>
+              <div>
+                <h3 class="text-lg font-bold mb-2">Special Skills</h3>
+                <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
+                  Spend coins to activate powerful abilities — undo moves, swap the next piece, delete a single tile, or clear an entire type.
+                </p>
+              </div>
+              <div class="flex flex-wrap gap-2 mt-auto pt-2">
+                <span class="px-2.5 py-1 rounded-md bg-cm-gold/10 text-cm-gold text-xs font-medium">Undo</span>
+                <span class="px-2.5 py-1 rounded-md bg-cm-gold/10 text-cm-gold text-xs font-medium">Swap</span>
+                <span class="px-2.5 py-1 rounded-md bg-cm-gold/10 text-cm-gold text-xs font-medium">Delete</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== HOW IT WORKS SECTION ===== -->
+      <section class="border-t border-border-light dark:border-border-dark bg-gray-50 dark:bg-surface-dark/50">
+        <div class="mx-auto max-w-6xl px-6 py-20 md:py-28">
+          <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4">How to play</h2>
+            <p class="text-gray-500 dark:text-gray-400 text-lg max-w-lg mx-auto">Jump right in — the rules are simple but the strategy runs deep.</p>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <!-- Step 1 -->
+            <div class="flex flex-col items-center text-center gap-4">
+              <div class="w-12 h-12 rounded-full bg-cm-primary/10 flex items-center justify-center text-cm-primary font-black text-lg">1</div>
+              <h3 class="font-bold">Place a Tile</h3>
+              <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">Tap an empty cell to place the next time unit from your queue onto the 6×6 grid.</p>
+            </div>
+            <!-- Step 2 -->
+            <div class="flex flex-col items-center text-center gap-4">
+              <div class="w-12 h-12 rounded-full bg-cm-primary/10 flex items-center justify-center text-cm-primary font-black text-lg">2</div>
+              <h3 class="font-bold">Merge 3+</h3>
+              <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">When 3 or more adjacent same-type tiles connect, they merge into the next tier.</p>
+            </div>
+            <!-- Step 3 -->
+            <div class="flex flex-col items-center text-center gap-4">
+              <div class="w-12 h-12 rounded-full bg-cm-primary/10 flex items-center justify-center text-cm-primary font-black text-lg">3</div>
+              <h3 class="font-bold">Chain Cascades</h3>
+              <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">The new merged tile checks for further matches — each cascade doubles your score!</p>
+            </div>
+            <!-- Step 4 -->
+            <div class="flex flex-col items-center text-center gap-4">
+              <div class="w-12 h-12 rounded-full bg-cm-primary/10 flex items-center justify-center text-cm-primary font-black text-lg">4</div>
+              <h3 class="font-bold">Climb the Leaderboard</h3>
+              <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">Compete for the highest score globally. Use skills wisely to keep the game going.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== MONETIZATION SECTION ===== -->
+      <section class="border-t border-border-light dark:border-border-dark">
+        <div class="mx-auto max-w-6xl px-6 py-20 md:py-28">
+          <div class="max-w-3xl mx-auto">
+            <div class="text-center mb-12">
+              <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cm-gold/10 text-cm-gold text-xs font-bold uppercase tracking-widest mb-6">
+                <span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">toll</span>
+                Free to Play
+              </div>
+              <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4">Play for free, upgrade your experience</h2>
+              <p class="text-gray-500 dark:text-gray-400 text-lg">Enjoy the full game at no cost. Optional purchases enhance your gameplay.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="flex items-start gap-4 p-5 rounded-xl bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark">
+                <div class="w-10 h-10 rounded-lg bg-cm-primary/10 flex items-center justify-center flex-shrink-0">
+                  <span class="material-symbols-outlined text-cm-primary text-[20px]" style="font-variation-settings: 'FILL' 1;">sports_esports</span>
+                </div>
+                <div>
+                  <h4 class="font-bold text-sm mb-1">Completely Free</h4>
+                  <p class="text-gray-400 text-xs leading-relaxed">The entire game is free to play. No paywalls, no energy timers.</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-4 p-5 rounded-xl bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark">
+                <div class="w-10 h-10 rounded-lg bg-cm-gold/10 flex items-center justify-center flex-shrink-0">
+                  <span class="material-symbols-outlined text-cm-gold text-[20px]" style="font-variation-settings: 'FILL' 1;">monetization_on</span>
+                </div>
+                <div>
+                  <h4 class="font-bold text-sm mb-1">Coin Packs</h4>
+                  <p class="text-gray-400 text-xs leading-relaxed">Buy coin packs to use more skills. Earn coins for free through gameplay too!</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-4 p-5 rounded-xl bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark">
+                <div class="w-10 h-10 rounded-lg bg-cm-accent/10 flex items-center justify-center flex-shrink-0">
+                  <span class="material-symbols-outlined text-cm-accent text-[20px]" style="font-variation-settings: 'FILL' 1;">block</span>
+                </div>
+                <div>
+                  <h4 class="font-bold text-sm mb-1">Remove Ads</h4>
+                  <p class="text-gray-400 text-xs leading-relaxed">One-time purchase to remove all banner and interstitial ads permanently.</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-4 p-5 rounded-xl bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark">
+                <div class="w-10 h-10 rounded-lg bg-green-500/10 flex items-center justify-center flex-shrink-0">
+                  <span class="material-symbols-outlined text-green-500 text-[20px]" style="font-variation-settings: 'FILL' 1;">play_circle</span>
+                </div>
+                <div>
+                  <h4 class="font-bold text-sm mb-1">Rewarded Revive</h4>
+                  <p class="text-gray-400 text-xs leading-relaxed">Watch a short ad when the grid fills up for a second chance — always optional.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== CTA SECTION ===== -->
+      <section class="border-t border-border-light dark:border-border-dark bg-gray-50 dark:bg-surface-dark/50">
+        <div class="mx-auto max-w-6xl px-6 py-20 md:py-28">
+          <div class="max-w-2xl mx-auto text-center">
+            <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-6">
+              Ready to
+              <span class="text-cm-primary">sync the universe</span>?
+            </h2>
+            <p class="text-gray-500 dark:text-gray-400 text-lg leading-relaxed mb-10">
+              Download ChronosMerge today and start merging time. How far up the chain can you go?
+            </p>
+            <div class="flex flex-col sm:flex-row items-center gap-4 justify-center">
+              <a href="#" class="inline-flex items-center gap-3 px-6 py-3.5 rounded-xl bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-semibold text-sm hover:opacity-90 transition-opacity">
+                <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                <div class="flex flex-col leading-tight">
+                  <span class="text-[10px] opacity-80">Download on the</span>
+                  <span class="text-base font-bold -mt-0.5">App Store</span>
+                </div>
+              </a>
+              <a href="#" class="inline-flex items-center gap-3 px-6 py-3.5 rounded-xl bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-semibold text-sm hover:opacity-90 transition-opacity">
+                <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.61 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.5,12.92 20.16,13.19L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/></svg>
+                <div class="flex flex-col leading-tight">
+                  <span class="text-[10px] opacity-80">Get it on</span>
+                  <span class="text-base font-bold -mt-0.5">Google Play</span>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="border-t border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark">
+      <div class="mx-auto max-w-6xl px-6 py-12">
+        <div class="flex flex-col gap-8">
+          <!-- Footer top -->
+          <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex items-center gap-2.5">
+              <img src="../../images/chronosmerge/icon.png" alt="ChronosMerge" class="w-10 h-10 rounded-xl shadow-sm" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+              <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-cm-primary to-cm-accent flex items-center justify-center shadow-sm" style="display: none;">
+                <span class="material-symbols-outlined text-white text-[18px]" style="font-variation-settings: 'FILL' 1;">schedule</span>
+              </div>
+              <span class="font-bold tracking-tight">ChronosMerge</span>
+              <span class="text-gray-400 dark:text-gray-500 text-xs">by nberimen</span>
+            </div>
+            <nav class="flex flex-wrap items-center justify-center gap-x-8 gap-y-3" aria-label="Footer navigation">
+              <a class="text-gray-400 dark:text-gray-500 text-sm font-medium hover:text-cm-primary transition-colors" href="privacy.html">Privacy Policy</a>
+              <a class="text-gray-400 dark:text-gray-500 text-sm font-medium hover:text-cm-primary transition-colors" href="terms.html">Terms of Service</a>
+              <a class="text-gray-400 dark:text-gray-500 text-sm font-medium hover:text-cm-primary transition-colors" href="support.html">Support</a>
+              <a class="text-gray-400 dark:text-gray-500 text-sm font-medium hover:text-cm-primary transition-colors" href="data-deletion.html">Data Deletion</a>
+            </nav>
+          </div>
+          <!-- Footer bottom -->
+          <div class="flex flex-col md:flex-row items-center justify-between gap-4 pt-6 border-t border-border-light dark:border-border-dark">
+            <a href="../../" class="flex items-center gap-2 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 transition-colors">
+              <div class="w-5 h-5 rounded bg-gray-300 dark:bg-gray-600 flex items-center justify-center">
+                <span class="text-white font-black text-[8px]">n</span>
+              </div>
+              <span class="text-xs font-medium">nberimen.com</span>
+            </a>
+            <p class="text-gray-400 dark:text-gray-500 text-xs">
+              &copy; 2026 nberimen. All rights reserved.
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+</body>
+
+</html>
