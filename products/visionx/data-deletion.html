@@ -1,196 +1,131 @@
 <!DOCTYPE html>
-
-<html class="light" lang="en">
+<html lang="en">
 
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>VisionX Account & Data Deletion</title>
-    <!-- Tailwind CSS -->
+    <title>VisionX Account &amp; Data Deletion</title>
+    <meta name="description" content="How to delete your VisionX account and data." />
+    <link rel="icon" href="../../images/visionx/icon.png" />
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <!-- Material Symbols -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-        rel="stylesheet" />
-    <!-- Google Fonts: Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap"
-        rel="stylesheet" />
-    <script id="tailwind-config">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <script>
         tailwind.config = {
-            darkMode: "class",
+            darkMode: "media",
             theme: {
                 extend: {
                     colors: {
-                        "primary": "#137fec",
-                        "background-light": "#f6f7f8",
-                        "background-dark": "#101922",
+                        primary: "#7c3aed",
+                        ink: "#0f1222",
+                        "bg-dark": "#0a0a12",
+                        "surface-dark": "#13131f",
+                        "border-dark": "#24243a",
                     },
-                    fontFamily: {
-                        "display": ["Inter", "sans-serif"]
-                    },
-                    borderRadius: { "DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px" },
+                    fontFamily: { display: ["Inter", "sans-serif"] },
                 },
             },
         }
     </script>
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-        }
-
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-    </style>
-    <style>
-        body {
-            min-height: max(884px, 100dvh);
-        }
+        body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 0, 'opsz' 24; }
+        .list-policy li + li { margin-top: .5rem; }
+        .list-policy { list-style: disc; padding-left: 1.25rem; }
+        .list-policy li::marker { color: #7c3aed; }
     </style>
 </head>
 
-<body class="bg-background-light dark:bg-background-dark min-h-screen text-[#111418] dark:text-white">
-    <main class="max-w-xl mx-auto px-4 pb-20">
-        <!-- Headline Section -->
-        <div class="pt-8 pb-4">
-            <h1 class="text-[#111418] dark:text-white tracking-tight text-[32px] font-bold leading-tight">
-                VisionX Account & Data Deletion
-            </h1>
-            <p class="text-[#617589] dark:text-gray-400 text-sm font-normal leading-normal mt-2">
-                Last updated: July 18, 2026
+<body class="bg-slate-50 dark:bg-bg-dark text-ink dark:text-slate-100 min-h-screen">
+    <header class="sticky top-0 z-40 backdrop-blur-lg bg-white/80 dark:bg-bg-dark/80 border-b border-slate-200 dark:border-border-dark">
+        <div class="mx-auto max-w-3xl px-5 h-16 flex items-center justify-between">
+            <a href="./" class="flex items-center gap-3 group">
+                <img src="../../images/visionx/icon.png" alt="VisionX" class="w-9 h-9 rounded-xl shadow-sm" />
+                <span class="font-bold tracking-tight group-hover:text-primary transition-colors">VisionX</span>
+            </a>
+            <nav class="flex items-center gap-5 text-sm font-medium text-slate-500 dark:text-slate-400">
+                <a href="privacy.html" class="hover:text-primary transition-colors">Privacy</a>
+                <a href="support.html" class="hover:text-primary transition-colors">Support</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="mx-auto max-w-3xl px-5 pb-24">
+        <div class="pt-12 pb-8">
+            <p class="text-primary text-xs font-bold uppercase tracking-widest mb-3">Your data</p>
+            <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight">Account &amp; Data Deletion</h1>
+            <p class="text-slate-500 dark:text-slate-400 mt-3">Last updated: October 28, 2026</p>
+        </div>
+
+        <!-- In-app deletion -->
+        <section class="p-6 rounded-2xl bg-white dark:bg-surface-dark border border-slate-200 dark:border-border-dark mb-6">
+            <div class="flex items-center gap-3 mb-4">
+                <span class="material-symbols-outlined text-primary">delete_forever</span>
+                <h2 class="text-xl font-bold">Delete your account in the app</h2>
+            </div>
+            <ol class="space-y-3">
+                <li class="flex gap-3"><span class="w-7 h-7 shrink-0 rounded-full bg-primary text-white text-sm font-bold flex items-center justify-center">1</span><span>Open VisionX and go to the <strong>Profile</strong> tab.</span></li>
+                <li class="flex gap-3"><span class="w-7 h-7 shrink-0 rounded-full bg-primary text-white text-sm font-bold flex items-center justify-center">2</span><span>Tap <strong>Delete account</strong>.</span></li>
+                <li class="flex gap-3"><span class="w-7 h-7 shrink-0 rounded-full bg-primary text-white text-sm font-bold flex items-center justify-center">3</span><span>Type the confirmation word and confirm. Deletion happens immediately and cannot be undone.</span></li>
+            </ol>
+            <p class="mt-5 text-sm text-slate-500 dark:text-slate-400">
+                Note: uninstalling the app does <strong>not</strong> delete your data on our servers. Please use
+                Delete account (or contact us) before uninstalling if you want your data removed.
             </p>
-        </div>
-        <div class="space-y-6">
-            <!-- Introduction -->
-            <section>
-                <p class="text-[#111418] dark:text-gray-200 text-base font-normal leading-relaxed">
-                    VisionX uses anonymous accounts — no email or personal information is required to use the App.
-                    This page explains how you can request deletion of your data.
-                </p>
-            </section>
-            <hr class="border-gray-100 dark:border-gray-800" />
-            <!-- Section 1 -->
-            <section>
-                <h3 class="text-[#111418] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] mb-3">
-                    Deleting Your Data
-                </h3>
-                <p class="text-[#111418] dark:text-gray-200 text-base font-normal leading-relaxed">
-                    Since VisionX uses anonymous sign-in, you can delete all your data by uninstalling the App. When
-                    you uninstall, your local session is removed and your anonymous account becomes inaccessible.
-                </p>
-                <p class="text-[#111418] dark:text-gray-200 text-base font-normal leading-relaxed mt-3">
-                    When your data is deleted:
-                </p>
-                <ul class="mt-4 space-y-3 pl-4">
-                    <li class="flex gap-3 text-sm text-[#111418] dark:text-gray-200">
-                        <span class="text-primary font-bold">•</span>
-                        <span>Your anonymous account is deactivated</span>
-                    </li>
-                    <li class="flex gap-3 text-sm text-[#111418] dark:text-gray-200">
-                        <span class="text-primary font-bold">•</span>
-                        <span>You lose access to all generated videos and remaining credits</span>
-                    </li>
-                </ul>
-                <p class="text-[#111418] dark:text-gray-200 text-base font-normal leading-relaxed mt-3">
-                    You can also request complete server-side data deletion by contacting us:
-                </p>
-                <ul class="mt-4 space-y-3 pl-4">
-                    <li class="flex gap-3 text-sm text-[#111418] dark:text-gray-200">
-                        <span class="text-primary font-bold">•</span>
-                        <span>Email: <a href="mailto:support@nberimen.com?subject=VisionX%20Data%20Deletion"
-                                class="text-primary">support@nberimen.com</a></span>
-                    </li>
-                    <li class="flex gap-3 text-sm text-[#111418] dark:text-gray-200">
-                        <span class="text-primary font-bold">•</span>
-                        <span>Subject: VisionX Data Deletion Request</span>
-                    </li>
-                    <li class="flex gap-3 text-sm text-[#111418] dark:text-gray-200">
-                        <span class="text-primary font-bold">•</span>
-                        <span>Please include any relevant details that can help us identify your account (e.g., purchase receipts)</span>
-                    </li>
+        </section>
+
+        <!-- What is deleted -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <section class="p-6 rounded-2xl bg-white dark:bg-surface-dark border border-slate-200 dark:border-border-dark">
+                <h2 class="font-bold mb-3">Deleted immediately</h2>
+                <ul class="list-policy text-sm text-slate-600 dark:text-slate-300">
+                    <li>Your account and anonymous user ID</li>
+                    <li>Credit balance (remaining credits are forfeited)</li>
+                    <li>Job history, prompts and settings</li>
+                    <li>Cloud copies of your images and videos</li>
+                    <li>Push notification tokens</li>
+                    <li>Your subscriber record at our purchase provider (RevenueCat)</li>
+                    <li>Images and videos saved in the app on this device</li>
                 </ul>
             </section>
-            <!-- Section 2 -->
-            <section>
-                <h3 class="text-[#111418] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] mb-3">
-                    What Data Is Deleted
-                </h3>
-                <p class="text-[#111418] dark:text-gray-200 text-base font-normal leading-relaxed">
-                    Upon data deletion, the following applies:
-                </p>
-                <ul class="mt-4 space-y-3 pl-4">
-                    <li class="flex gap-3 text-sm text-[#111418] dark:text-gray-200">
-                        <span class="text-primary font-bold">•</span>
-                        <span>Account data (anonymous user ID, credit balance, usage history) is removed</span>
-                    </li>
-                    <li class="flex gap-3 text-sm text-[#111418] dark:text-gray-200">
-                        <span class="text-primary font-bold">•</span>
-                        <span>Generated videos stored on cloud storage are permanently deleted</span>
-                    </li>
-                    <li class="flex gap-3 text-sm text-[#111418] dark:text-gray-200">
-                        <span class="text-primary font-bold">•</span>
-                        <span>Text prompts and uploaded images associated with your account are removed</span>
-                    </li>
-                    <li class="flex gap-3 text-sm text-[#111418] dark:text-gray-200">
-                        <span class="text-primary font-bold">•</span>
-                        <span>Purchase-related data is automatically deleted within 90 days</span>
-                    </li>
+            <section class="p-6 rounded-2xl bg-white dark:bg-surface-dark border border-slate-200 dark:border-border-dark">
+                <h2 class="font-bold mb-3">Kept, but no longer linked to you</h2>
+                <ul class="list-policy text-sm text-slate-600 dark:text-slate-300">
+                    <li>Purchase and credit transaction records, anonymized, as required for accounting and fraud prevention</li>
+                    <li>Short-lived security logs (up to 1 day)</li>
                 </ul>
-            </section>
-            <!-- Section 3 -->
-            <section>
-                <h3 class="text-[#111418] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] mb-3">
-                    Data Retention & Security
-                </h3>
-                <p class="text-[#111418] dark:text-gray-200 text-base font-normal leading-relaxed">
-                    Some data may be temporarily retained only for:
-                </p>
-                <ul class="mt-4 space-y-3 pl-4">
-                    <li class="flex gap-3 text-sm text-[#111418] dark:text-gray-200">
-                        <span class="text-primary font-bold">•</span>
-                        <span>Legal or regulatory obligations</span>
-                    </li>
-                    <li class="flex gap-3 text-sm text-[#111418] dark:text-gray-200">
-                        <span class="text-primary font-bold">•</span>
-                        <span>Accounting and transaction verification</span>
-                    </li>
-                    <li class="flex gap-3 text-sm text-[#111418] dark:text-gray-200">
-                        <span class="text-primary font-bold">•</span>
-                        <span>Fraud prevention</span>
-                    </li>
+                <h2 class="font-bold mt-6 mb-3">Not affected</h2>
+                <ul class="list-policy text-sm text-slate-600 dark:text-slate-300">
+                    <li>Files you saved to your phone's photo library</li>
+                    <li>App Store / Google Play subscriptions — cancel them in your store account settings</li>
                 </ul>
-                <p class="text-[#111418] dark:text-gray-200 text-base font-normal leading-relaxed mt-3">
-                    All retained data is securely stored and permanently deleted once the required retention period
-                    ends.
-                </p>
-            </section>
-            <!-- Section 4 -->
-            <section>
-                <h3 class="text-[#111418] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] mb-3">
-                    Partial Data Deletion
-                </h3>
-                <p class="text-[#111418] dark:text-gray-200 text-base font-normal leading-relaxed">
-                    Users may request deletion of specific data (e.g., individual videos or prompts) without deleting
-                    their entire account by contacting us via email.
-                </p>
-            </section>
-            <!-- Section 5 -->
-            <section>
-                <h3 class="text-[#111418] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] mb-3">
-                    Contact
-                </h3>
-                <p class="text-[#111418] dark:text-gray-200 text-base font-normal leading-relaxed">
-                    If you have questions regarding account or data deletion:
-                </p>
-                <p class="text-[#111418] dark:text-gray-200 text-base font-normal leading-relaxed mt-3">
-                    <a href="mailto:support@nberimen.com?subject=VisionX%20Support"
-                        class="text-primary">support@nberimen.com</a>
-                </p>
             </section>
         </div>
+
+        <!-- Email request -->
+        <section class="p-6 rounded-2xl bg-white dark:bg-surface-dark border border-slate-200 dark:border-border-dark">
+            <div class="flex items-center gap-3 mb-3">
+                <span class="material-symbols-outlined text-primary">mail</span>
+                <h2 class="text-xl font-bold">Request deletion by email</h2>
+            </div>
+            <p class="text-slate-600 dark:text-slate-300">
+                If you no longer have the app, email us with the subject <strong>"VisionX Data Deletion Request"</strong>
+                and any details that help us find your account (for example, a purchase receipt or the account ID
+                shown in Profile). We respond within 30 days.
+            </p>
+            <a href="mailto:support@nberimen.com?subject=VisionX%20Data%20Deletion%20Request"
+                class="mt-5 inline-flex items-center gap-2 px-5 py-3 rounded-full bg-primary text-white font-semibold hover:opacity-90 transition-opacity">
+                support@nberimen.com
+            </a>
+        </section>
     </main>
-    <!-- Bottom Safe Area Spacer for iOS -->
-    <div class="h-8"></div>
+
+    <footer class="border-t border-slate-200 dark:border-border-dark">
+        <div class="mx-auto max-w-3xl px-5 py-8 flex flex-col sm:flex-row gap-3 items-center justify-between text-xs text-slate-400">
+            <a href="../../" class="hover:text-primary">&larr; nberimen</a>
+            <p>&copy; 2026 nberimen. All rights reserved.</p>
+        </div>
+    </footer>
 </body>
 
 </html>

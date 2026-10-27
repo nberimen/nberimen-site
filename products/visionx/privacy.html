@@ -1,326 +1,248 @@
 <!DOCTYPE html>
-
-<html class="light" lang="en">
+<html lang="en">
 
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>VisionX Privacy Policy</title>
-    <!-- Tailwind CSS -->
+    <meta name="description" content="How VisionX collects, uses, stores and deletes your data." />
+    <link rel="icon" href="../../images/visionx/icon.png" />
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <!-- Material Symbols -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-        rel="stylesheet" />
-    <!-- Google Fonts: Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap"
-        rel="stylesheet" />
-    <script id="tailwind-config">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <script>
         tailwind.config = {
-            darkMode: "class",
+            darkMode: "media",
             theme: {
                 extend: {
                     colors: {
-                        "primary": "#137fec",
-                        "background-light": "#f6f7f8",
-                        "background-dark": "#101922",
+                        primary: "#7c3aed",
+                        "primary-soft": "#ede9fe",
+                        ink: "#0f1222",
+                        "bg-dark": "#0a0a12",
+                        "surface-dark": "#13131f",
+                        "border-dark": "#24243a",
                     },
-                    fontFamily: {
-                        "display": ["Inter", "sans-serif"]
-                    },
-                    borderRadius: { "DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px" },
+                    fontFamily: { display: ["Inter", "sans-serif"] },
                 },
             },
         }
     </script>
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-        }
-
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-    </style>
-    <style>
-        body {
-            min-height: max(884px, 100dvh);
-        }
+        body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+        html { scroll-behavior: smooth; }
+        section { scroll-margin-top: 88px; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 0, 'opsz' 24; }
+        .prose-policy p, .prose-policy li { line-height: 1.7; }
+        .prose-policy ul { list-style: disc; padding-left: 1.25rem; }
+        .prose-policy li + li { margin-top: .5rem; }
+        .prose-policy li::marker { color: #7c3aed; }
     </style>
 </head>
 
-<body class="bg-background-light dark:bg-background-dark min-h-screen text-[#111418] dark:text-white">
-    <main class="max-w-xl mx-auto px-4 pb-20">
-        <!-- Headline Section -->
-        <div class="pt-8 pb-4">
-            <h1 class="text-[#111418] dark:text-white tracking-tight text-[32px] font-bold leading-tight">
-                VisionX Privacy Policy
-            </h1>
-            <p class="text-[#617589] dark:text-gray-400 text-sm font-normal leading-normal mt-2">
-                Last updated: July 18, 2026
+<body class="bg-slate-50 dark:bg-bg-dark text-ink dark:text-slate-100 min-h-screen">
+    <!-- Header -->
+    <header class="sticky top-0 z-40 backdrop-blur-lg bg-white/80 dark:bg-bg-dark/80 border-b border-slate-200 dark:border-border-dark">
+        <div class="mx-auto max-w-4xl px-5 h-16 flex items-center justify-between">
+            <a href="./" class="flex items-center gap-3 group">
+                <img src="../../images/visionx/icon.png" alt="VisionX" class="w-9 h-9 rounded-xl shadow-sm" />
+                <span class="font-bold tracking-tight group-hover:text-primary transition-colors">VisionX</span>
+            </a>
+            <nav class="flex items-center gap-5 text-sm font-medium text-slate-500 dark:text-slate-400">
+                <a href="terms.html" class="hover:text-primary transition-colors">Terms</a>
+                <a href="data-deletion.html" class="hover:text-primary transition-colors">Data deletion</a>
+                <a href="support.html" class="hover:text-primary transition-colors">Support</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="mx-auto max-w-4xl px-5 pb-24">
+        <!-- Title -->
+        <div class="pt-12 pb-8">
+            <p class="text-primary text-xs font-bold uppercase tracking-widest mb-3">Legal</p>
+            <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight">Privacy Policy</h1>
+            <p class="text-slate-500 dark:text-slate-400 mt-3">Last updated: October 28, 2026</p>
+            <p class="mt-6 text-lg text-slate-600 dark:text-slate-300 leading-relaxed max-w-3xl">
+                VisionX ("we", "us", "our") is an AI image and video creation app. This policy explains what
+                information the app uses, why, where it is stored, how long we keep it, and how you can delete it.
             </p>
         </div>
-        <div class="space-y-6">
-            <!-- Introduction -->
-            <section>
-                <p class="text-[#111418] dark:text-gray-200 text-base font-normal leading-relaxed">
-                    VisionX ("we", "us", "our") respects your privacy and is committed to protecting your personal
-                    data. This Privacy Policy explains how we collect, use, store, and share information when you use
-                    the VisionX mobile application ("the App").
-                </p>
-            </section>
-            <hr class="border-gray-100 dark:border-gray-800" />
-            <!-- Section 1 -->
-            <section>
-                <h3 class="text-[#111418] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] mb-3">
-                    1. Information We Collect
-                </h3>
-                <p class="text-[#111418] dark:text-gray-200 text-base font-normal leading-relaxed mb-4">
-                    When you use the App, we may collect the following information:
-                </p>
-                <h5 class="text-[#111418] dark:text-white font-bold leading-tight tracking-[-0.015em] mb-3">1.1
-                    Anonymous Account Information</h5>
-                <ul class="space-y-3 pl-4 mb-3">
-                    <li class="flex gap-3 text-sm text-[#111418] dark:text-gray-200">
-                        <span class="text-primary font-bold">•</span>
-                        <span>The App uses anonymous sign-in. No email, name, or personal credentials are required to create an account.</span>
-                    </li>
-                    <li class="flex gap-3 text-sm text-[#111418] dark:text-gray-200">
-                        <span class="text-primary font-bold">•</span>
-                        <span>A unique anonymous user ID is automatically generated for session and data management purposes.</span>
-                    </li>
-                </ul>
-                <h5 class="text-[#111418] dark:text-white font-bold leading-tight tracking-[-0.015em] mb-3">1.2
-                    User-Generated Content</h5>
-                <ul class="space-y-3 pl-4 mb-3">
-                    <li class="flex gap-3 text-sm text-[#111418] dark:text-gray-200">
-                        <span class="text-primary font-bold">•</span>
-                        <span>Text prompts submitted for AI video generation</span>
-                    </li>
-                    <li class="flex gap-3 text-sm text-[#111418] dark:text-gray-200">
-                        <span class="text-primary font-bold">•</span>
-                        <span>Images uploaded for image-to-video or image enhancement features</span>
-                    </li>
-                    <li class="flex gap-3 text-sm text-[#111418] dark:text-gray-200">
-                        <span class="text-primary font-bold">•</span>
-                        <span>Generated video outputs</span>
-                    </li>
-                </ul>
-                <h5 class="text-[#111418] dark:text-white font-bold leading-tight tracking-[-0.015em] mb-3">1.3
-                    Transaction Data</h5>
-                <ul class="space-y-3 pl-4">
-                    <li class="flex gap-3 text-sm text-[#111418] dark:text-gray-200">
-                        <span class="text-primary font-bold">•</span>
-                        <span>Credit balance and usage history</span>
-                    </li>
-                    <li class="flex gap-3 text-sm text-[#111418] dark:text-gray-200">
-                        <span class="text-primary font-bold">•</span>
-                        <span>Purchase records processed through app store payment systems</span>
-                    </li>
-                </ul>
-            </section>
-            <!-- Section 2 -->
-            <section>
-                <h3 class="text-[#111418] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] mb-3">
-                    2. How We Use Your Information
-                </h3>
-                <p class="text-[#111418] dark:text-gray-200 text-base font-normal leading-relaxed">
-                    We use your information to:
-                </p>
-                <ul class="mt-4 space-y-3 pl-4">
-                    <li class="flex gap-3 text-sm text-[#111418] dark:text-gray-200">
-                        <span class="text-primary font-bold">•</span>
-                        <span>Manage your anonymous account and credit balance</span>
-                    </li>
-                    <li class="flex gap-3 text-sm text-[#111418] dark:text-gray-200">
-                        <span class="text-primary font-bold">•</span>
-                        <span>Process and deliver AI-generated video content</span>
-                    </li>
-                    <li class="flex gap-3 text-sm text-[#111418] dark:text-gray-200">
-                        <span class="text-primary font-bold">•</span>
-                        <span>Process credit purchases and maintain transaction records</span>
-                    </li>
-                    <li class="flex gap-3 text-sm text-[#111418] dark:text-gray-200">
-                        <span class="text-primary font-bold">•</span>
-                        <span>Maintain and improve the App's functionality and performance</span>
-                    </li>
-                    <li class="flex gap-3 text-sm text-[#111418] dark:text-gray-200">
-                        <span class="text-primary font-bold">•</span>
-                        <span>Respond to support requests</span>
-                    </li>
-                </ul>
-            </section>
-            <!-- Section 3 -->
-            <section>
-                <h3 class="text-[#111418] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] mb-3">
-                    3. AI Processing & Video Generation
-                </h3>
-                <ul class="mt-4 space-y-3 pl-4">
-                    <li class="flex gap-3 text-sm text-[#111418] dark:text-gray-200">
-                        <span class="text-primary font-bold">•</span>
-                        <span>Text prompts and uploaded images are transmitted securely to third-party AI services (such as fal.ai) to generate video content.</span>
-                    </li>
-                    <li class="flex gap-3 text-sm text-[#111418] dark:text-gray-200">
-                        <span class="text-primary font-bold">•</span>
-                        <span>These services process the data solely to generate the requested output and do not use them for advertising or unrelated purposes.</span>
-                    </li>
-                    <li class="flex gap-3 text-sm text-[#111418] dark:text-gray-200">
-                        <span class="text-primary font-bold">•</span>
-                        <span>Generated videos are stored on cloud storage (Cloudflare R2) and are accessible only to the user who created them via signed URLs.</span>
-                    </li>
-                </ul>
-            </section>
-            <!-- Section 4 -->
-            <section>
-                <h3 class="text-[#111418] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] mb-3">
-                    4. Data Storage & Retention
-                </h3>
-                <ul class="mt-4 space-y-3 pl-4">
-                    <li class="flex gap-3 text-sm text-[#111418] dark:text-gray-200">
-                        <span class="text-primary font-bold">•</span>
-                        <span>Account data (anonymous user ID, credit balance) is stored securely using third-party infrastructure providers (such as Supabase).</span>
-                    </li>
-                    <li class="flex gap-3 text-sm text-[#111418] dark:text-gray-200">
-                        <span class="text-primary font-bold">•</span>
-                        <span>Generated videos are stored on cloud storage and may be automatically deleted after a retention period.</span>
-                    </li>
-                    <li class="flex gap-3 text-sm text-[#111418] dark:text-gray-200">
-                        <span class="text-primary font-bold">•</span>
-                        <span>Purchase-related data is retained for accounting purposes and automatically deleted within 90 days of account deletion.</span>
-                    </li>
-                </ul>
-            </section>
-            <!-- Section 5 -->
-            <section>
-                <h3 class="text-[#111418] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] mb-3">
-                    5. Third-Party Services
-                </h3>
-                <p class="text-[#111418] dark:text-gray-200 text-base font-normal leading-relaxed">
-                    We rely on trusted third-party service providers to operate the App, including:
-                </p>
-                <ul class="mt-4 space-y-3 pl-4">
-                    <li class="flex gap-3 text-sm text-[#111418] dark:text-gray-200">
-                        <span class="text-primary font-bold">•</span>
-                        <span>Authentication and database services (e.g., Supabase)</span>
-                    </li>
-                    <li class="flex gap-3 text-sm text-[#111418] dark:text-gray-200">
-                        <span class="text-primary font-bold">•</span>
-                        <span>AI video generation services (e.g., fal.ai)</span>
-                    </li>
-                    <li class="flex gap-3 text-sm text-[#111418] dark:text-gray-200">
-                        <span class="text-primary font-bold">•</span>
-                        <span>Cloud storage services (e.g., Cloudflare R2)</span>
-                    </li>
-                    <li class="flex gap-3 text-sm text-[#111418] dark:text-gray-200">
-                        <span class="text-primary font-bold">•</span>
-                        <span>Payment and subscription management (e.g., RevenueCat, App Store, Google Play)</span>
-                    </li>
-                </ul>
-                <p class="text-[#111418] dark:text-gray-200 text-base font-normal leading-relaxed mt-3">
-                    These providers process data only on our behalf and in accordance with applicable data protection
-                    standards.
-                </p>
-            </section>
-            <!-- Section 6 -->
-            <section>
-                <h3 class="text-[#111418] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] mb-3">
-                    6. Data Sharing
-                </h3>
-                <p class="text-[#111418] dark:text-gray-200 text-base font-normal leading-relaxed">
-                    We do not sell or rent your personal data.
-                </p>
-                <p class="text-[#111418] dark:text-gray-200 text-base font-normal leading-relaxed mt-3">
-                    Your data may be shared only:
-                </p>
-                <ul class="mt-4 space-y-3 pl-4">
-                    <li class="flex gap-3 text-sm text-[#111418] dark:text-gray-200">
-                        <span class="text-primary font-bold">•</span>
-                        <span>With third-party service providers necessary to operate the App</span>
-                    </li>
-                    <li class="flex gap-3 text-sm text-[#111418] dark:text-gray-200">
-                        <span class="text-primary font-bold">•</span>
-                        <span>When required by law or legal process</span>
-                    </li>
-                    <li class="flex gap-3 text-sm text-[#111418] dark:text-gray-200">
-                        <span class="text-primary font-bold">•</span>
-                        <span>To protect the rights, safety, and security of users and the App</span>
-                    </li>
-                </ul>
-            </section>
-            <!-- Section 7 -->
-            <section>
-                <h3 class="text-[#111418] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] mb-3">
-                    7. Data Security
-                </h3>
-                <p class="text-[#111418] dark:text-gray-200 text-base font-normal leading-relaxed">
-                    We implement reasonable technical and organizational measures to protect your information against
-                    unauthorized access, loss, or misuse. All data is transmitted using secure HTTPS connections and stored
-                    with industry-standard encryption. However, no method of transmission or storage is 100% secure.
-                </p>
-            </section>
-            <!-- Section 8 -->
-            <section>
-                <h3 class="text-[#111418] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] mb-3">
-                    8. Your Rights
-                </h3>
-                <p class="text-[#111418] dark:text-gray-200 text-base font-normal leading-relaxed">
-                    Depending on your location, you may have the right to:
-                </p>
-                <ul class="mt-4 space-y-3 pl-4">
-                    <li class="flex gap-3 text-sm text-[#111418] dark:text-gray-200">
-                        <span class="text-primary font-bold">•</span>
-                        <span>Access your personal data</span>
-                    </li>
-                    <li class="flex gap-3 text-sm text-[#111418] dark:text-gray-200">
-                        <span class="text-primary font-bold">•</span>
-                        <span>Request correction or deletion of your data</span>
-                    </li>
-                    <li class="flex gap-3 text-sm text-[#111418] dark:text-gray-200">
-                        <span class="text-primary font-bold">•</span>
-                        <span>Withdraw consent where applicable</span>
-                    </li>
-                </ul>
-                <p class="text-[#111418] dark:text-gray-200 text-base font-normal leading-relaxed mt-3">
-                    You may contact us to exercise these rights.
-                </p>
-            </section>
-            <!-- Section 9 -->
-            <section>
-                <h3 class="text-[#111418] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] mb-3">
-                    9. Children's Privacy
-                </h3>
-                <p class="text-[#111418] dark:text-gray-200 text-base font-normal leading-relaxed">
-                    VisionX is not intended for children under 13 (or the minimum age required by local law). We do
-                    not knowingly collect data from children.
-                </p>
-            </section>
-            <!-- Section 10 -->
-            <section>
-                <h3 class="text-[#111418] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] mb-3">
-                    10. Changes to This Policy
-                </h3>
-                <p class="text-[#111418] dark:text-gray-200 text-base font-normal leading-relaxed">
-                    We may update this Privacy Policy from time to time. Any changes will be posted on this page with an
-                    updated revision date.
-                </p>
-            </section>
-            <!-- Section 11 -->
-            <section>
-                <h3 class="text-[#111418] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] mb-3">
-                    11. Contact
-                </h3>
-                <p class="text-[#111418] dark:text-gray-200 text-base font-normal leading-relaxed">
-                    If you have questions or concerns about this Privacy Policy, please contact us:
-                </p>
-                <p class="text-[#111418] dark:text-gray-200 text-base font-normal leading-relaxed mt-3">
-                    <a href="mailto:support@nberimen.com?subject=VisionX%20Support"
-                        class="text-primary">support@nberimen.com</a>
-                </p>
-            </section>
+
+        <!-- At a glance -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-12">
+            <div class="flex gap-4 p-5 rounded-2xl bg-white dark:bg-surface-dark border border-slate-200 dark:border-border-dark">
+                <span class="material-symbols-outlined text-primary">person_off</span>
+                <div><h3 class="font-bold">No sign-up required</h3><p class="text-sm text-slate-500 dark:text-slate-400 mt-1">You start with an anonymous account. We don't ask for your name, email or phone.</p></div>
+            </div>
+            <div class="flex gap-4 p-5 rounded-2xl bg-white dark:bg-surface-dark border border-slate-200 dark:border-border-dark">
+                <span class="material-symbols-outlined text-primary">smartphone</span>
+                <div><h3 class="font-bold">Your creations live on your device</h3><p class="text-sm text-slate-500 dark:text-slate-400 mt-1">A private cloud copy is kept for 30 days so nothing gets lost, then deleted automatically.</p></div>
+            </div>
+            <div class="flex gap-4 p-5 rounded-2xl bg-white dark:bg-surface-dark border border-slate-200 dark:border-border-dark">
+                <span class="material-symbols-outlined text-primary">block</span>
+                <div><h3 class="font-bold">No ads, no tracking, no selling</h3><p class="text-sm text-slate-500 dark:text-slate-400 mt-1">We don't show ads, use advertising trackers, or sell or rent your data.</p></div>
+            </div>
+            <div class="flex gap-4 p-5 rounded-2xl bg-white dark:bg-surface-dark border border-slate-200 dark:border-border-dark">
+                <span class="material-symbols-outlined text-primary">delete_forever</span>
+                <div><h3 class="font-bold">Delete anytime, in the app</h3><p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Profile → Delete account removes your account and creations right away.</p></div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-[220px_1fr] gap-10">
+            <!-- Contents -->
+            <aside class="hidden lg:block">
+                <nav class="sticky top-24 text-sm space-y-2 text-slate-500 dark:text-slate-400">
+                    <p class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-3">Contents</p>
+                    <a href="#collect" class="block hover:text-primary">1. Information we use</a>
+                    <a href="#use" class="block hover:text-primary">2. How we use it</a>
+                    <a href="#ai" class="block hover:text-primary">3. AI processing &amp; safety</a>
+                    <a href="#retention" class="block hover:text-primary">4. Storage &amp; retention</a>
+                    <a href="#third" class="block hover:text-primary">5. Service providers</a>
+                    <a href="#sharing" class="block hover:text-primary">6. Sharing</a>
+                    <a href="#notifications" class="block hover:text-primary">7. Notifications</a>
+                    <a href="#security" class="block hover:text-primary">8. Security</a>
+                    <a href="#rights" class="block hover:text-primary">9. Your rights &amp; deletion</a>
+                    <a href="#children" class="block hover:text-primary">10. Children</a>
+                    <a href="#changes" class="block hover:text-primary">11. Changes</a>
+                    <a href="#contact" class="block hover:text-primary">12. Contact</a>
+                </nav>
+            </aside>
+
+            <div class="prose-policy space-y-10 text-slate-700 dark:text-slate-300">
+                <section id="collect">
+                    <h2 class="text-xl font-bold text-ink dark:text-white mb-4">1. Information we use</h2>
+                    <h3 class="font-semibold text-ink dark:text-white mb-2">Account</h3>
+                    <ul class="mb-5">
+                        <li>An anonymous account is created automatically when you first open the app. It is identified by a random user ID — no name, email or phone number is required.</li>
+                        <li>If you choose to protect your account with an email address (optional, where available), we store that email to let you sign in again on a new device. We use it only for sign-in codes and essential account messages.</li>
+                    </ul>
+                    <h3 class="font-semibold text-ink dark:text-white mb-2">Content you create</h3>
+                    <ul class="mb-5">
+                        <li>Text prompts and the settings you choose (model, style, duration, quality).</li>
+                        <li>Photos you select for editing, animation, restoration or merging. They are sent for processing only; we do not keep your original photos on our servers.</li>
+                        <li>The images and videos generated for you.</li>
+                    </ul>
+                    <h3 class="font-semibold text-ink dark:text-white mb-2">Purchases and credits</h3>
+                    <ul class="mb-5">
+                        <li>Credit balance, credit usage history, purchased packages and subscription status.</li>
+                        <li>Payments are processed by the App Store or Google Play. We never receive your card or payment details.</li>
+                    </ul>
+                    <h3 class="font-semibold text-ink dark:text-white mb-2">Device and technical data</h3>
+                    <ul>
+                        <li>Your app language and, if you allow notifications, a push notification token for your device.</li>
+                        <li>Limited technical records needed to run the service securely, such as request times used for rate limiting and a one-way (irreversible) hash of your IP address used only to prevent abuse of promo codes.</li>
+                    </ul>
+                </section>
+
+                <section id="use">
+                    <h2 class="text-xl font-bold text-ink dark:text-white mb-4">2. How we use it</h2>
+                    <ul>
+                        <li>To create the images and videos you request and deliver them to you.</li>
+                        <li>To manage your account, credits, purchases and subscriptions — including refunding credits automatically when a generation fails.</li>
+                        <li>To keep the service safe: content moderation, fraud and abuse prevention, rate limiting.</li>
+                        <li>To notify you when a creation is ready (only if you allow notifications).</li>
+                        <li>To provide support and improve reliability. We do not use your content to train AI models.</li>
+                    </ul>
+                </section>
+
+                <section id="ai">
+                    <h2 class="text-xl font-bold text-ink dark:text-white mb-4">3. AI processing &amp; safety</h2>
+                    <ul>
+                        <li>Your prompt and selected photos are sent securely to our AI generation provider (fal.ai) solely to produce the requested result.</li>
+                        <li>Prompts may be automatically translated to English by an AI language model before generation, to follow your instructions more accurately. Your original prompt is what we store.</li>
+                        <li>To prevent illegal or harmful content, prompts and photos are checked by an automated moderation service (OpenAI Moderation API) before generation. Requests that violate our rules are blocked and no credits are charged.</li>
+                        <li>These providers process data only to perform these tasks on our behalf and not for advertising.</li>
+                    </ul>
+                </section>
+
+                <section id="retention">
+                    <h2 class="text-xl font-bold text-ink dark:text-white mb-4">4. Storage &amp; retention</h2>
+                    <div class="overflow-hidden rounded-2xl border border-slate-200 dark:border-border-dark">
+                        <table class="w-full text-sm">
+                            <thead class="bg-slate-100 dark:bg-surface-dark text-left">
+                                <tr><th class="p-3 font-semibold">Data</th><th class="p-3 font-semibold">Where</th><th class="p-3 font-semibold">How long</th></tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-200 dark:divide-border-dark">
+                                <tr><td class="p-3">Your creations (gallery)</td><td class="p-3">On your device</td><td class="p-3">Until you delete them or the app</td></tr>
+                                <tr><td class="p-3">Cloud copy of creations</td><td class="p-3">Private cloud storage (Cloudflare R2), accessible only to you via short-lived links</td><td class="p-3">30 days, then deleted automatically</td></tr>
+                                <tr><td class="p-3">Original photos you upload</td><td class="p-3">Not stored by us</td><td class="p-3">Processed and discarded</td></tr>
+                                <tr><td class="p-3">Prompts &amp; job history</td><td class="p-3">Our database (Supabase)</td><td class="p-3">Until you delete the job or your account</td></tr>
+                                <tr><td class="p-3">Account &amp; credit balance</td><td class="p-3">Our database (Supabase)</td><td class="p-3">Until you delete your account</td></tr>
+                                <tr><td class="p-3">Purchase and credit records</td><td class="p-3">Our database</td><td class="p-3">Kept for accounting; after account deletion they are anonymized and no longer linked to you</td></tr>
+                                <tr><td class="p-3">Rate-limit records</td><td class="p-3">Our database</td><td class="p-3">Up to 1 day</td></tr>
+                                <tr><td class="p-3">Push notification token</td><td class="p-3">Our database</td><td class="p-3">Until you disable notifications, it expires, or you delete your account</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section id="third">
+                    <h2 class="text-xl font-bold text-ink dark:text-white mb-4">5. Service providers</h2>
+                    <ul>
+                        <li><strong>Supabase</strong> — authentication, database and server functions</li>
+                        <li><strong>fal.ai</strong> — AI image and video generation; AI prompt translation</li>
+                        <li><strong>OpenAI</strong> — automated content moderation</li>
+                        <li><strong>Cloudflare R2</strong> — private storage of creations (30 days) and template media</li>
+                        <li><strong>RevenueCat, Apple App Store, Google Play</strong> — purchases and subscriptions</li>
+                        <li><strong>Expo</strong> — delivery of push notifications</li>
+                    </ul>
+                    <p class="mt-4">These providers process data only on our behalf, under their own security and data-protection commitments. Some of them process data outside your country; where required, appropriate safeguards apply.</p>
+                </section>
+
+                <section id="sharing">
+                    <h2 class="text-xl font-bold text-ink dark:text-white mb-4">6. Sharing</h2>
+                    <p>We do not sell or rent your data and do not share it for advertising. We share data only with the service providers above to run the app, when required by law, or to protect the safety and rights of users and the service.</p>
+                </section>
+
+                <section id="notifications">
+                    <h2 class="text-xl font-bold text-ink dark:text-white mb-4">7. Notifications</h2>
+                    <p>The app asks for notification permission when you start your first creation. If you allow it, we use a device token to tell you when a creation is ready or failed (with credits refunded). You can turn notifications off at any time in your device settings.</p>
+                </section>
+
+                <section id="security">
+                    <h2 class="text-xl font-bold text-ink dark:text-white mb-4">8. Security</h2>
+                    <p>All traffic uses encrypted HTTPS connections. Your creations in the cloud are private and can only be downloaded through short-lived signed links issued to your account. Database access is restricted with row-level security. No system is perfectly secure, but we work to protect your data against unauthorized access, loss or misuse.</p>
+                </section>
+
+                <section id="rights">
+                    <h2 class="text-xl font-bold text-ink dark:text-white mb-4">9. Your rights &amp; deletion</h2>
+                    <ul>
+                        <li><strong>Delete your account in the app:</strong> Profile → Delete account. This removes your account, job history, cloud copies of your creations and your push token immediately. Purchase records are anonymized.</li>
+                        <li><strong>Delete single creations:</strong> remove them from your gallery at any time. This removes them from your device and history; any cloud copy is deleted automatically within 30 days.</li>
+                        <li>Depending on where you live, you may also have the right to access, correct, export or restrict the processing of your data. Contact us to make a request.</li>
+                        <li>Deleting your account does not cancel an App Store or Google Play subscription — please cancel it in your store account.</li>
+                    </ul>
+                    <p class="mt-4">More details: <a class="text-primary font-semibold" href="data-deletion.html">Account &amp; data deletion</a>.</p>
+                </section>
+
+                <section id="children">
+                    <h2 class="text-xl font-bold text-ink dark:text-white mb-4">10. Children</h2>
+                    <p>VisionX is not intended for children under 13 (or the minimum age required in your country). We do not knowingly collect data from children. If you believe a child has used the app, contact us and we will delete the data.</p>
+                </section>
+
+                <section id="changes">
+                    <h2 class="text-xl font-bold text-ink dark:text-white mb-4">11. Changes</h2>
+                    <p>We may update this policy. Changes are posted on this page with a new "Last updated" date; significant changes will also be announced in the app.</p>
+                </section>
+
+                <section id="contact">
+                    <h2 class="text-xl font-bold text-ink dark:text-white mb-4">12. Contact</h2>
+                    <p>Questions or requests about privacy:</p>
+                    <a href="mailto:support@nberimen.com?subject=VisionX%20Privacy" class="mt-3 inline-flex items-center gap-2 px-5 py-3 rounded-full bg-primary text-white font-semibold hover:opacity-90 transition-opacity">
+                        <span class="material-symbols-outlined text-[20px]">mail</span>
+                        support@nberimen.com
+                    </a>
+                </section>
+            </div>
         </div>
     </main>
-    <!-- Bottom Safe Area Spacer for iOS -->
-    <div class="h-8"></div>
+
+    <footer class="border-t border-slate-200 dark:border-border-dark">
+        <div class="mx-auto max-w-4xl px-5 py-8 flex flex-col sm:flex-row gap-3 items-center justify-between text-xs text-slate-400">
+            <a href="../../" class="hover:text-primary">&larr; nberimen</a>
+            <p>&copy; 2026 nberimen. All rights reserved.</p>
+        </div>
+    </footer>
 </body>
 
 </html>
